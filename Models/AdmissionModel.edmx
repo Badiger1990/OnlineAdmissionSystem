@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SmartAdmissionSystemDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_courses">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dept_ID" Type="int" />
+          <Property Name="Course_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Course_duration" Type="int" />
+          <Property Name="Course_substream" Type="varchar" MaxLength="100" />
+          <Property Name="Course_Fees" Type="float" />
+        </EntityType>
+        <EntityType Name="tbl_department">
+          <Key>
+            <PropertyRef Name="Dept_ID" />
+          </Key>
+          <Property Name="Dept_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dept_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dept_head" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="UserType" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__tbl_cours__Dept___4CA06362">
+          <End Role="tbl_department" Type="Self.tbl_department" Multiplicity="0..1" />
+          <End Role="tbl_courses" Type="Self.tbl_courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_department">
+              <PropertyRef Name="Dept_ID" />
+            </Principal>
+            <Dependent Role="tbl_courses">
+              <PropertyRef Name="Dept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SmartAdmissionSystemDataModelStoreContainer">
+          <EntitySet Name="tbl_courses" EntityType="Self.tbl_courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_department" EntityType="Self.tbl_department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tbl_cours__Dept___4CA06362" Association="Self.FK__tbl_cours__Dept___4CA06362">
+            <End Role="tbl_department" EntitySet="tbl_department" />
+            <End Role="tbl_courses" EntitySet="tbl_courses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SmartAdmissionSystemDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="SmartAdmissionSystemDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
+          <EntitySet Name="tbl_courses" EntityType="SmartAdmissionSystemDataModel.tbl_courses" />
+          <EntitySet Name="tbl_department" EntityType="SmartAdmissionSystemDataModel.tbl_department" />
+          <AssociationSet Name="FK__tbl_cours__Dept___4CA06362" Association="SmartAdmissionSystemDataModel.FK__tbl_cours__Dept___4CA06362">
+            <End Role="tbl_department" EntitySet="tbl_department" />
+            <End Role="tbl_courses" EntitySet="tbl_courses" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tbl_courses">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dept_ID" Type="Int32" />
+          <Property Name="Course_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Course_duration" Type="Int32" />
+          <Property Name="Course_substream" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Course_Fees" Type="Double" />
+          <NavigationProperty Name="tbl_department" Relationship="SmartAdmissionSystemDataModel.FK__tbl_cours__Dept___4CA06362" FromRole="tbl_courses" ToRole="tbl_department" />
+        </EntityType>
+        <EntityType Name="tbl_department">
+          <Key>
+            <PropertyRef Name="Dept_ID" />
+          </Key>
+          <Property Name="Dept_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dept_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dept_head" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_courses" Relationship="SmartAdmissionSystemDataModel.FK__tbl_cours__Dept___4CA06362" FromRole="tbl_department" ToRole="tbl_courses" />
+        </EntityType>
+        <Association Name="FK__tbl_cours__Dept___4CA06362">
+          <End Type="SmartAdmissionSystemDataModel.tbl_department" Role="tbl_department" Multiplicity="0..1" />
+          <End Type="SmartAdmissionSystemDataModel.tbl_courses" Role="tbl_courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_department">
+              <PropertyRef Name="Dept_ID" />
+            </Principal>
+            <Dependent Role="tbl_courses">
+              <PropertyRef Name="Dept_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SmartAdmissionSystemDataModelStoreContainer" CdmEntityContainer="SmartAdmissionSystemDataEntities">
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="SmartAdmissionSystemDataModel.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_courses">
+            <EntityTypeMapping TypeName="SmartAdmissionSystemDataModel.tbl_courses">
+              <MappingFragment StoreEntitySet="tbl_courses">
+                <ScalarProperty Name="Course_Fees" ColumnName="Course_Fees" />
+                <ScalarProperty Name="Course_substream" ColumnName="Course_substream" />
+                <ScalarProperty Name="Course_duration" ColumnName="Course_duration" />
+                <ScalarProperty Name="Course_Name" ColumnName="Course_Name" />
+                <ScalarProperty Name="Dept_ID" ColumnName="Dept_ID" />
+                <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_department">
+            <EntityTypeMapping TypeName="SmartAdmissionSystemDataModel.tbl_department">
+              <MappingFragment StoreEntitySet="tbl_department">
+                <ScalarProperty Name="Dept_head" ColumnName="Dept_head" />
+                <ScalarProperty Name="Dept_Name" ColumnName="Dept_Name" />
+                <ScalarProperty Name="Dept_ID" ColumnName="Dept_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

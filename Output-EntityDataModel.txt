@@ -1,0 +1,9 @@
+﻿Generated model file: AdmissionModel.edmx.
+Loading metadata from the database took 00:00:05.5473960.
+Generating the model took 00:01:20.8619647.
+Generated model file: AdmissionModel.edmx.
+Loading metadata from the database took 00:00:01.6697542.
+Generating the model took 00:00:02.2122862.
+Generated model file: AdmissionModel.edmx.
+Loading metadata from the database took 00:00:00.7797314.
+Generating the model took 00:00:02.1328907.
