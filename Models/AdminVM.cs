@@ -29,6 +29,8 @@ namespace OnlineAdmissionSystem.Models
         public string Course_Duration { get; set; }
         [Required(ErrorMessage = "This field is required")]
         public string Course_substream { get; set; }
+
+        public double Course_fees { get; set; }
         public string StatusMessage { get; set; }
     }
 }

@@ -25,8 +25,8 @@ namespace OnlineAdmissionSystem.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<tbl_courses> tbl_courses { get; set; }
         public virtual DbSet<tbl_department> tbl_department { get; set; }
+        public virtual DbSet<UserMaster> UserMasters { get; set; }
     }
 }

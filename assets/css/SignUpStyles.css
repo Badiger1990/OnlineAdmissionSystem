@@ -7,3 +7,12 @@
     font-family:Callibri;
     font-size:18pt;
 }
+
+#centerTableAllign {
+    margin: 155px;
+    width: 50%;
+    border: 3px solid purple;
+    padding: 30px;
+    text-align: left;
+    border-block:dashed;
+}

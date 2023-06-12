@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9679d6e9f77b421da4dbd71d85b4d028" Name="Diagram1">
-        <EntityTypeShape EntityType="SmartAdmissionSystemDataModel.UserMaster" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartAdmissionSystemDataModel.tbl_courses" Width="1.5" PointX="5.625" PointY="1" />
         <EntityTypeShape EntityType="SmartAdmissionSystemDataModel.tbl_department" Width="1.5" PointX="3.375" PointY="1.25" />
         <AssociationConnector Association="SmartAdmissionSystemDataModel.FK__tbl_cours__Dept___4CA06362" />
+        <EntityTypeShape EntityType="SmartAdmissionSystemDataModel.UserMaster" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

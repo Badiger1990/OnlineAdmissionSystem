@@ -146,6 +146,7 @@
     <Content Include="assets\js\custom.js" />
     <Content Include="assets\js\isotope.min.js" />
     <Content Include="assets\js\owl-carousel.js" />
+    <Content Include="assets\js\WebGrid.js" />
     <Content Include="Global.asax" />
     <Content Include="Models\AdmissionModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

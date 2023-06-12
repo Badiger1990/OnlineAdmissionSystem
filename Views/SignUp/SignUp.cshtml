@@ -57,10 +57,10 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="@Url.Action("Index","Home")" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="#services">Services</a></li>
+                            @*<li class="scroll-to-section"><a href="#services">Services</a></li>
                             <li class="scroll-to-section"><a href="#courses">Courses</a></li>
-                            <li class="scroll-to-section"><a href="#team">Team</a></li>
-                            <li class="scroll-to-section"><a href="@Url.Action("SignUp","SignUp")">SignUp</a></li>
+                            <li class="scroll-to-section"><a href="#team">Team</a></li>*@
+                            <li class="scroll-to-section"><a href="@Url.Action("SignUp","SignUp")">Registration</a></li>
                             <li class="scroll-to-section"><a href="@Url.Action("SignIn","SignIn")">Sign In</a></li>
                         </ul>
                         <a class='menu-trigger'>
@@ -83,13 +83,12 @@
             </div>
         </div>
     </div>
-    <div id="signup-table">
+    <div style="margin:35px; width:50%; padding:20px;">
 
         @using (Html.BeginForm("SignUp", "SignUp",FormMethod.Post))
         {
-        <table>
+        <table style="padding:30px">
             <tr>
-                <td>
                 <td>
                     @Html.LabelFor(model => model.UserName)
                 </td>
@@ -98,13 +97,18 @@
                 </td>
             </tr>
             <tr>
-                <td></td>
                 <td>
                     @Html.ValidationMessageFor(model => model.UserName)
                 </td>
             </tr>
             <tr>
                 <td>
+                    @Html.LabelFor(model => model.Email_ID)
+                <td>
+                    @Html.EditorFor(model => model.Email_ID)
+                </td>
+            </tr>
+            <tr>
                 <td>
                     @Html.LabelFor(model => model.Password)
                 </td>
@@ -113,11 +117,25 @@
                 </td>
             </tr>
             <tr>
-                <td></td>
                 <td>
                     @Html.ValidationMessageFor(model => model.UserName)
                 </td>
             </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Phone_Number)
+                <td>
+                    @Html.EditorFor(model => model.Phone_Number)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Gender)
+                <td>
+                    @Html.EditorFor(model => model.Gender)
+                </td>
+            </tr>
+
             <tr style="text-align:right">
                 <td>
                 </td>

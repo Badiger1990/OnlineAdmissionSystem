@@ -1,7 +1,10 @@
-﻿@model OnlineAdmissionSystem.Models.AdminVM
+﻿@model IEnumerable<OnlineAdmissionSystem.Models.AdminVM>
 
 @{
     Layout = null;
+}
+@{
+    WebGrid grid = new WebGrid(Model);
 }
 
 <!DOCTYPE html>
@@ -26,7 +29,37 @@
     <link rel="stylesheet" href="~/assets/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link href="~/assets/css/SignUpStyles.css" rel="stylesheet" />
+    <!-- Styles for table-->
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
 
+        .Grid {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+
+            .Grid th {
+                background-color: #F7F7F7;
+                font-weight: bold;
+            }
+
+            .Grid th, .Grid td {
+                padding: 5px;
+                width: 150px;
+                border: 1px solid #ccc;
+            }
+
+            .Grid, .Grid table td {
+                border: 0px solid #ccc;
+            }
+
+                .Grid th a, .Grid th a:visited {
+                    color: #333;
+                }
+    </style>
 </head>
 
 <body>
@@ -60,7 +93,7 @@
                             <li class="scroll-to-section"><a href="#services">Services</a></li>
                             <li class="scroll-to-section"><a href="#courses">Courses</a></li>
                             <li class="scroll-to-section"><a href="#team">Team</a></li>
-                            <li class="scroll-to-section"><a href="@Url.Action("SignUp","SignUp")">SignUp</a></li>
+                            <li class="scroll-to-section"><a href="@Url.Action("SignUp","SignUp")">Registration</a></li>
                             <li class="scroll-to-section"><a href="@Url.Action("SignIn","SignIn")">Sign In</a></li>
                         </ul>
                         <a class='menu-trigger'>
@@ -83,87 +116,62 @@
             </div>
         </div>
     </div>
-    <div id="signup-table">
+    <div style="margin:25px; width:50%; border:3px solid purple; padding:10px;">
 
-        @using (Html.BeginForm("SaveDepartment", "Admin", FormMethod.Post))
-        {
-        <table>
-            <tr> Create Department</tr>
+        @grid.GetHtml(
+      htmlAttributes: new { @id = "WebGrid", @class = "Grid" },
+      columns: grid.Columns(
+               grid.Column(header: "Department Id", format:
+                                        @<span class="label">@item.Dept_ID</span>, style: "DepartmentID"),
+grid.Column(header: "Department Name", format: @<span>
+            <span class="label">@item.Dept_Name</span>
+            <input class="text" type="text" value="@item.Dept_Name" style="display:none" />
+        </span>, style: "Name"),
+grid.Column(header: "Department Head", format: @<span>
+                <span class="label">@item.Dept_Head</span>
+                <input class="text" type="text" value="@item.Dept_Head" style="display:none" />
+            </span>, style: "Country"),
+grid.Column(header: "Course Name", format: @<span>
+                    <span class="label">@item.Course_Name</span>
+                    <input class="text" type="text" value="@item.Course_Name" style="display:none" />
+                </span>, style: "CourseName"),
+grid.Column(header: "Course duration", format: @<span>
+                        <span class="label">@item.Course_duration</span>
+                        <input class="text" type="text" value="@item.Course_duration" style="display:none" />
+                    </span>, style: "Course_duration"),
+grid.Column(header: "Course Substreem", format: @<span>
+                            <span class="label">@item.Course_Substream</span>
+                            <input class="text" type="text" value="@item.Course_Substream" style="display:none" />
+                        </span>, style: "none"),
+grid.Column(header: "Course Fees", format: @<span>
+                                        <span class="label">@item.Course_fees</span>
+                                        <input class="text" type="text" value="@item.Course_fees" style="display:none" />
+                                    </span>, style: "none"),
+                                                grid.Column(format:@<span class="link">
+                                                                <a class="Edit" href="javascript:;">Edit</a>
+                                                                <a class="Update" href="javascript:;" style="display:none">Update</a>
+                                                                <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
+                                                                <a class="Delete" href="javascript:;">Delete</a>
+                                                            </span>)))
+        <br />
+        <table border="0" cellpadding="0" cellspacing="0">
             <tr>
-                <td>
-                <td>
-                    @Html.LabelFor(model => model.Dept_Name)
+                <td style="width: 150px">
+                    Name:<br />
+                    <input type="text" id="txtName" style="width:140px" />
                 </td>
-                <td>
-                    @Html.EditorFor(Model => Model.Dept_Name)
+                <td style="width: 150px">
+                    Country:<br />
+                    <input type="text" id="txtCountry" style="width:140px" />
                 </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.Dept_Name)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                <td>
-                    @Html.LabelFor(model => model.Dept_Head)
-                </td>
-                <td>
-                    @Html.EditorFor(Model => Model.Dept_Head)
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.Dept_Head)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                <td>
-                    @Html.LabelFor(model => model.Course_Name)
-                </td>
-                <td>
-                    @Html.EditorFor(Model => Model.Course_Name)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                <td>
-                    @Html.LabelFor(model => model.Course_Duration)
-                </td>
-                <td>
-                    @Html.EditorFor(Model => Model.Course_Duration)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                <td>
-                    @Html.LabelFor(model => model.Course_substream)
-                </td>
-                <td>
-                    @Html.EditorFor(Model => Model.Course_substream)
-                </td>
-            </tr>
-            <tr style="text-align:right">
-                <td>
-                </td>
-                <td>
-                    <input type="submit" id="save-btn" value="Save" name="btnSubmit" />
-                    <input type="reset"id="clear-btn" value="clear" name="btnClear" />
-                </td>
-
-            </tr>
-            <tr>
-                <td id="status-id" style="display:none">
-                    @*@Html.LabelFor(model => model.StatusMessage);*@
-                    <label>Saved Successfully</label>
+                <td style="width: 100px">
+                    <br />
+                    <input type="button" id="btnAdd" value="Add" />
                 </td>
             </tr>
         </table>
-        }
     </div>
+    
 
     <footer>
         <div class="container">
@@ -185,6 +193,9 @@
     <script src="~/Scripts/jquery-1.8.0.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script src="~/assets/js/WebGrid.js"></script>
 </body>
 </html>
 <script>
@@ -193,5 +204,5 @@
             debugger
             $("#status-id").show();
         })
-        });
+    });
 </script>

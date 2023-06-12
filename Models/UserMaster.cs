@@ -18,7 +18,9 @@ namespace OnlineAdmissionSystem.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public string UserType { get; set; }
-
+        public string Email_ID { get; set; }
+        public string Gender { get; set; }
+        public Nullable<int> Phone_Number { get; set; }
         public string LoginErrorMessage { get; set; }
     }
 }
