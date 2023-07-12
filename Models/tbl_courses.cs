@@ -14,6 +14,12 @@ namespace OnlineAdmissionSystem.Models
     
     public partial class tbl_courses
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbl_courses()
+        {
+            this.tbl_AdmissionTransactions = new HashSet<tbl_AdmissionTransactions>();
+        }
+    
         public int Course_ID { get; set; }
         public Nullable<int> Dept_ID { get; set; }
         public string Course_Name { get; set; }
@@ -22,5 +28,7 @@ namespace OnlineAdmissionSystem.Models
         public Nullable<double> Course_Fees { get; set; }
     
         public virtual tbl_department tbl_department { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_AdmissionTransactions> tbl_AdmissionTransactions { get; set; }
     }
 }

@@ -116,13 +116,13 @@
             </div>
         </div>
     </div>
-    <div style="margin:25px; width:50%; border:3px solid purple; padding:10px;">
+    <div style="margin:25px; width:50%;  padding:10px;">
 
         @grid.GetHtml(
       htmlAttributes: new { @id = "WebGrid", @class = "Grid" },
       columns: grid.Columns(
                grid.Column(header: "Department Id", format:
-                                        @<span class="label">@item.Dept_ID</span>, style: "DepartmentID"),
+                                            @<span class="label">@item.Dept_ID</span>, style: "DepartmentID"),
 grid.Column(header: "Department Name", format: @<span>
             <span class="label">@item.Dept_Name</span>
             <input class="text" type="text" value="@item.Dept_Name" style="display:none" />
@@ -130,7 +130,7 @@ grid.Column(header: "Department Name", format: @<span>
 grid.Column(header: "Department Head", format: @<span>
                 <span class="label">@item.Dept_Head</span>
                 <input class="text" type="text" value="@item.Dept_Head" style="display:none" />
-            </span>, style: "Country"),
+            </span>, style: "none"),
 grid.Column(header: "Course Name", format: @<span>
                     <span class="label">@item.Course_Name</span>
                     <input class="text" type="text" value="@item.Course_Name" style="display:none" />
@@ -144,25 +144,41 @@ grid.Column(header: "Course Substreem", format: @<span>
                             <input class="text" type="text" value="@item.Course_Substream" style="display:none" />
                         </span>, style: "none"),
 grid.Column(header: "Course Fees", format: @<span>
-                                        <span class="label">@item.Course_fees</span>
-                                        <input class="text" type="text" value="@item.Course_fees" style="display:none" />
-                                    </span>, style: "none"),
-                                                grid.Column(format:@<span class="link">
-                                                                <a class="Edit" href="javascript:;">Edit</a>
-                                                                <a class="Update" href="javascript:;" style="display:none">Update</a>
-                                                                <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
-                                                                <a class="Delete" href="javascript:;">Delete</a>
-                                                            </span>)))
+                                <span class="label">@item.Course_fees</span>
+                                <input class="text" type="text" value="@item.Course_fees" style="display:none" />
+                            </span>, style: "none"),
+                                 grid.Column(format:@<span class="link">
+                                                                                    <a class="Edit" href="javascript:;">Edit</a>
+                                                                                    <a class="Update" href="javascript:;" style="display:none">Update</a>
+                                                                                    <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
+                                                                                    <a class="Delete" href="javascript:;">Delete</a>
+                                                                                </span>)))
         <br />
-        <table border="0" cellpadding="0" cellspacing="0">
+        <table border="0" cellpadding="10" cellspacing="0">
             <tr>
                 <td style="width: 150px">
-                    Name:<br />
-                    <input type="text" id="txtName" style="width:140px" />
+                    Department Name:<br />
+                    <input type="text" id="txtDeptName" style="width:140px" />
                 </td>
                 <td style="width: 150px">
-                    Country:<br />
-                    <input type="text" id="txtCountry" style="width:140px" />
+                    Department Head:<br />
+                    <input type="text" id="txtDeptHead" style="width:140px" />
+                </td>
+                <td style="width: 150px">
+                    Course Name:<br />
+                    <input type="text" id="txtCourseName" style="width:140px" />
+                </td>
+                <td style="width: 150px">
+                    Course Duration:<br />
+                    <input type="text" id="txtCourseDuration" style="width:140px" />
+                </td>
+                <td style="width: 150px">
+                    Course Substream:<br />
+                    <input type="text" id="txtCourseSubstream" style="width:140px" />
+                </td>
+                <td style="width: 150px">
+                    Course Fees:<br />
+                    <input type="text" id="txtCourseFees" style="width:140px" />
                 </td>
                 <td style="width: 100px">
                     <br />
@@ -171,7 +187,7 @@ grid.Column(header: "Course Fees", format: @<span>
             </tr>
         </table>
     </div>
-    
+
 
     <footer>
         <div class="container">
@@ -195,14 +211,177 @@ grid.Column(header: "Course Fees", format: @<span>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-    <script src="~/assets/js/WebGrid.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var row = $("#WebGrid TBODY tr:eq(0)");
+            if ($("#WebGrid TBODY tr").length > 1) {
+                row.remove();
+            } else {
+                row.find(".label").html("");
+                row.find(".text").val("");
+                row.find(".link").hide();
+            }
+        });
+        function AppendRow(row, departmentName, departmentHead, courseName) {
+            //Bind Dept Name.
+            $(".Dept_Name", row).find(".label").html(departmentName);
+            $(".Dept_Name", row).find(".text").val(departmentName);
+
+            //Bind Dept Head.
+            $(".Dept_Head", row).find(".label").html(departmentHead);
+            $(".Dept_Head", row).find(".text").val(departmentHead);
+
+            //Bind Course Name.
+            $(".Course_Name", row).find(".label").html(courseName);
+            $(".Course_Name", row).find(".text").val(courseName);
+
+            //Bind Course Duration.
+            $(".Course_Duration", row).find(".label").html(courseDuration);
+            $(".Course_Duration", row).find(".text").val(courseDuration);
+
+            //Bind Course Substream.
+            $(".Course_substream", row).find(".label").html(courseSubstream);
+            $(".Course_substream", row).find(".text").val(courseSubstream);
+
+            //Bind Course Fees.
+            $(".Course_fees", row).find(".label").html(courseFees);
+            $(".Course_fees", row).find(".text").val(courseFees);
+
+            row.find(".link").show();
+            $("#WebGrid TBODY").append(row);
+        };
+
+        //Add event handler.
+        $("body").on("click", "#btnAdd", function () {
+            var txtDeptName = $("#txtDeptName");
+            var txtDeptHead = $("#txtDeptHead");
+            var txtCourseName = $("#txtCourseName");
+            var txtCourseDuration = $("#txtCourseDuration");
+            var txtCourseSubstream = $("#txtCourseSubstream");
+            var txtCourseFees = $("#txtCourseFees");
+            console.log(txtDeptName.val());
+            $.ajax({
+                type: "POST",
+                url: "/Admin/SaveDepartmentCourse",
+                //data: '{name: "' + txtDeptName.val() + '", country: "' + txtDeptHead.val() + '" }',
+                data: '{departmentName: "' + txtDeptName.val() +
+                    '", departmentHead: "' + txtDeptHead.val() +
+                    '", courseName: "' + txtCourseName.val() +
+                    '", courseDuration: "' + txtCourseDuration.val() +
+                    '", courseSubstream: "' + txtCourseSubstream.val() +
+                    '", courseFees: "' + txtCourseFees.val() +'" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    var row = $("#WebGrid TBODY tr:last-child").clone();
+                    if (row.find(".label").is(":empty")) {
+                        $("#WebGrid TBODY tr:last-child").remove();
+                    }
+                    AppendRow(row, r.Dept_Name, r.Dept_Head, r.Course_Name);
+                    console.log("Logdata" + r.Dept_Name.val());
+
+                    txtDepartmentName.val("");
+                    txtDepartmentHead.val("");
+                }
+            });
+        });
+
+        //Edit event handler.
+        $("body").on("click", "#WebGrid TBODY .Edit", function () {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if ($(this).find(".text").length > 0) {
+                    $(this).find(".text").show();
+                    $(this).find(".label").hide();
+                }
+            });
+            row.find(".Update").show();
+            row.find(".Cancel").show();
+            row.find(".Delete").hide();
+            $(this).hide();
+        });
+
+        //Update event handler.
+        $("body").on("click", "#WebGrid TBODY .Update", function () {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if ($(this).find(".text").length > 0) {
+                    var span = $(this).find(".label");
+                    var input = $(this).find(".text");
+                    span.html(input.val());
+                    span.show();
+                    input.hide();
+                }
+            });
+            row.find(".Edit").show();
+            row.find(".Delete").show();
+            row.find(".Cancel").hide();
+            $(this).hide();
+
+            var AdminVM = {};
+            AdminVM.DepartmentName = row.find(".CustomerId").find(".label").html();
+            AdminVM.DepartmentHead = row.find(".Name").find(".label").html();
+            AdminVM.CourseName = row.find(".Country").find(".label").html();
+            $.ajax({
+                type: "POST",
+                url: "/Home/UpdateCustomer",
+                data: '{customer:' + JSON.stringify(customer) + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            });
+        });
+
+        //Cancel event handler.
+        $("body").on("click", "#WebGrid TBODY .Cancel", function () {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if ($(this).find(".text").length > 0) {
+                    var span = $(this).find(".label");
+                    var input = $(this).find(".text");
+                    input.val(span.html());
+                    span.show();
+                    input.hide();
+                }
+            });
+            row.find(".Edit").show();
+            row.find(".Delete").show();
+            row.find(".Update").hide();
+            $(this).hide();
+        });
+
+        //Delete event handler.
+        $("body").on("click", "#WebGrid TBODY .Delete", function () {
+            if (confirm("Do you want to delete this row?")) {
+                var row = $(this).closest("tr");
+                var customerId = row.find(".label").html();
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/DeleteCustomer",
+                    data: '{customerId: ' + customerId + '}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if ($("#WebGrid TBODY tr").length == 1) {
+                            row.find(".label").html("");
+                            row.find(".text").val("");
+                            row.find(".link").hide();
+                        } else {
+                            row.remove();
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
-<script>
+@*<script>
     $(function () {
         $("#save-btn").click(function () {
             debugger
             $("#status-id").show();
         })
     });
-</script>
+
+</script>*@

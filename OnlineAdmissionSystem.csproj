@@ -102,6 +102,7 @@
     <Content Include="assets\css\owl.css" />
     <Content Include="assets\css\SignUpStyles.css" />
     <Content Include="assets\css\templatemo-scholar.css" />
+    <Content Include="assets\images\1687163469871.jpg" />
     <Content Include="assets\images\akshay sir.jpg" />
     <Content Include="assets\images\Anand sir.jpg" />
     <Content Include="assets\images\Arjun sir.jpg" />
@@ -123,6 +124,7 @@
     <Content Include="assets\images\event-01.jpg" />
     <Content Include="assets\images\event-02.jpg" />
     <Content Include="assets\images\event-03.jpg" />
+    <Content Include="assets\images\GIFT-Engineering-College-Canteen-1.jpg" />
     <Content Include="assets\images\library.jpg" />
     <Content Include="assets\images\locationMap.JPG" />
     <Content Include="assets\images\malikjaan sir.jpg" />
@@ -135,10 +137,13 @@
     <Content Include="assets\images\post.jpg" />
     <Content Include="assets\images\prashant sir.jpg" />
     <Content Include="assets\images\ravi sir.jpg" />
+    <Content Include="assets\images\restroom-sign.png" />
+    <Content Include="assets\images\risk-assessment-products-economy-first-aid-room__42359.jpg" />
     <Content Include="assets\images\service-01.png" />
     <Content Include="assets\images\service-02.png" />
     <Content Include="assets\images\service-03.png" />
     <Content Include="assets\images\smart class.jpg" />
+    <Content Include="assets\images\Sports Room1.jpg" />
     <Content Include="assets\images\suman mam.jpg" />
     <Content Include="assets\images\testimonial-author.jpg" />
     <Content Include="assets\images\under.jpg" />
@@ -158,14 +163,16 @@
       <DependentUpon>AdmissionModel.edmx</DependentUpon>
       <LastGenOutput>AdmissionModel.cs</LastGenOutput>
     </Content>
-    <None Include="Scripts\jquery-1.8.0.intellisense.js" />
-    <Content Include="Scripts\jquery-1.8.0.js" />
-    <Content Include="Scripts\jquery-1.8.0.min.js" />
+    <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.0.js" />
+    <Content Include="Scripts\jquery-3.7.0.min.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="vendor\bootstrap\css\bootstrap.min.css" />
     <Content Include="vendor\bootstrap\js\bootstrap.min.js" />
     <Content Include="vendor\jquery\jquery.js" />
@@ -177,6 +184,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdmissionRequestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SignInController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
@@ -200,7 +208,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AdmissionModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdmissionTransactionModel.cs" />
     <Compile Include="Models\DepartmentDataVM.cs" />
+    <Compile Include="Models\RegistrationModel.cs" />
+    <Compile Include="Models\SignInModels.cs" />
+    <Compile Include="Models\tbl_AdmissionTransactions.cs">
+      <DependentUpon>AdmissionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_courses.cs">
       <DependentUpon>AdmissionModel.tt</DependentUpon>
     </Compile>
@@ -237,6 +251,7 @@
     <Content Include="Views\SignIn\SignIn.cshtml" />
     <Content Include="Views\Admin\AdminView.cshtml" />
     <Content Include="Views\StudentEnq\Enquiry.cshtml" />
+    <Content Include="Views\AdmissionRequest\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

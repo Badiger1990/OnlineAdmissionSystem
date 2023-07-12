@@ -5,6 +5,26 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SmartAdmissionSystemDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_AdmissionTransactions">
+          <Key>
+            <PropertyRef Name="admission_ID" />
+          </Key>
+          <Property Name="admission_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="course_ID" Type="int" />
+          <Property Name="degreee_marks" Type="float" />
+          <Property Name="puc_marks" Type="float" />
+          <Property Name="sslc_marks" Type="float" />
+          <Property Name="document_path" Type="varchar(max)" />
+          <Property Name="student_name" Type="varchar" MaxLength="100" />
+          <Property Name="student_father_name" Type="varchar" MaxLength="100" />
+          <Property Name="student_dob" Type="datetime" />
+          <Property Name="student_gender" Type="varchar" MaxLength="50" />
+          <Property Name="student_address" Type="varchar(max)" />
+          <Property Name="admission_status" Type="varchar" MaxLength="100" />
+          <Property Name="adhar_number" Type="int" />
+          <Property Name="student_religion" Type="varchar(max)" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
         <EntityType Name="tbl_courses">
           <Key>
             <PropertyRef Name="Course_ID" />
@@ -36,6 +56,30 @@
           <Property Name="Gender" Type="char" MaxLength="150" />
           <Property Name="Phone_Number" Type="int" />
         </EntityType>
+        <Association Name="FK__tbl_Admis__cours__03F0984C">
+          <End Role="tbl_courses" Type="Self.tbl_courses" Multiplicity="0..1" />
+          <End Role="tbl_AdmissionTransactions" Type="Self.tbl_AdmissionTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_courses">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="tbl_AdmissionTransactions">
+              <PropertyRef Name="course_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Admis__UserI__02FC7413">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="0..1" />
+          <End Role="tbl_AdmissionTransactions" Type="Self.tbl_AdmissionTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tbl_AdmissionTransactions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__tbl_cours__Dept___4CA06362">
           <End Role="tbl_department" Type="Self.tbl_department" Multiplicity="0..1" />
           <End Role="tbl_courses" Type="Self.tbl_courses" Multiplicity="*" />
@@ -49,9 +93,18 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SmartAdmissionSystemDataModelStoreContainer">
+          <EntitySet Name="tbl_AdmissionTransactions" EntityType="Self.tbl_AdmissionTransactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_courses" EntityType="Self.tbl_courses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_department" EntityType="Self.tbl_department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tbl_Admis__cours__03F0984C" Association="Self.FK__tbl_Admis__cours__03F0984C">
+            <End Role="tbl_courses" EntitySet="tbl_courses" />
+            <End Role="tbl_AdmissionTransactions" EntitySet="tbl_AdmissionTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Admis__UserI__02FC7413" Association="Self.FK__tbl_Admis__UserI__02FC7413">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="tbl_AdmissionTransactions" EntitySet="tbl_AdmissionTransactions" />
+          </AssociationSet>
           <AssociationSet Name="FK__tbl_cours__Dept___4CA06362" Association="Self.FK__tbl_cours__Dept___4CA06362">
             <End Role="tbl_department" EntitySet="tbl_department" />
             <End Role="tbl_courses" EntitySet="tbl_courses" />
@@ -69,6 +122,15 @@
             <End Role="tbl_courses" EntitySet="tbl_courses" />
           </AssociationSet>
           <EntitySet Name="UserMasters" EntityType="SmartAdmissionSystemDataModel.UserMaster" />
+          <EntitySet Name="tbl_AdmissionTransactions" EntityType="SmartAdmissionSystemDataModel.tbl_AdmissionTransactions" />
+          <AssociationSet Name="FK__tbl_Admis__cours__03F0984C" Association="SmartAdmissionSystemDataModel.FK__tbl_Admis__cours__03F0984C">
+            <End Role="tbl_courses" EntitySet="tbl_courses" />
+            <End Role="tbl_AdmissionTransactions" EntitySet="tbl_AdmissionTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Admis__UserI__02FC7413" Association="SmartAdmissionSystemDataModel.FK__tbl_Admis__UserI__02FC7413">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="tbl_AdmissionTransactions" EntitySet="tbl_AdmissionTransactions" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tbl_courses">
           <Key>
@@ -81,6 +143,7 @@
           <Property Name="Course_substream" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Course_Fees" Type="Double" />
           <NavigationProperty Name="tbl_department" Relationship="SmartAdmissionSystemDataModel.FK__tbl_cours__Dept___4CA06362" FromRole="tbl_courses" ToRole="tbl_department" />
+          <NavigationProperty Name="tbl_AdmissionTransactions" Relationship="SmartAdmissionSystemDataModel.FK__tbl_Admis__cours__03F0984C" FromRole="tbl_courses" ToRole="tbl_AdmissionTransactions" />
         </EntityType>
         <EntityType Name="tbl_department">
           <Key>
@@ -114,7 +177,54 @@
           <Property Name="Email_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
           <Property Name="Phone_Number" Type="Int32" />
+          <NavigationProperty Name="tbl_AdmissionTransactions" Relationship="SmartAdmissionSystemDataModel.FK__tbl_Admis__UserI__02FC7413" FromRole="UserMaster" ToRole="tbl_AdmissionTransactions" />
         </EntityType>
+        <EntityType Name="tbl_AdmissionTransactions">
+          <Key>
+            <PropertyRef Name="admission_ID" />
+          </Key>
+          <Property Name="admission_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="course_ID" Type="Int32" />
+          <Property Name="degreee_marks" Type="Double" />
+          <Property Name="puc_marks" Type="Double" />
+          <Property Name="sslc_marks" Type="Double" />
+          <Property Name="document_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="student_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="student_father_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="student_dob" Type="DateTime" Precision="3" />
+          <Property Name="student_gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="student_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="admission_status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="adhar_number" Type="Int32" />
+          <Property Name="student_religion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="tbl_courses" Relationship="SmartAdmissionSystemDataModel.FK__tbl_Admis__cours__03F0984C" FromRole="tbl_AdmissionTransactions" ToRole="tbl_courses" />
+          <NavigationProperty Name="UserMaster" Relationship="SmartAdmissionSystemDataModel.FK__tbl_Admis__UserI__02FC7413" FromRole="tbl_AdmissionTransactions" ToRole="UserMaster" />
+        </EntityType>
+        <Association Name="FK__tbl_Admis__cours__03F0984C">
+          <End Type="SmartAdmissionSystemDataModel.tbl_courses" Role="tbl_courses" Multiplicity="0..1" />
+          <End Type="SmartAdmissionSystemDataModel.tbl_AdmissionTransactions" Role="tbl_AdmissionTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_courses">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="tbl_AdmissionTransactions">
+              <PropertyRef Name="course_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Admis__UserI__02FC7413">
+          <End Type="SmartAdmissionSystemDataModel.UserMaster" Role="UserMaster" Multiplicity="0..1" />
+          <End Type="SmartAdmissionSystemDataModel.tbl_AdmissionTransactions" Role="tbl_AdmissionTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tbl_AdmissionTransactions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -152,6 +262,27 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AdmissionTransactions">
+            <EntityTypeMapping TypeName="SmartAdmissionSystemDataModel.tbl_AdmissionTransactions">
+              <MappingFragment StoreEntitySet="tbl_AdmissionTransactions">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="student_religion" ColumnName="student_religion" />
+                <ScalarProperty Name="adhar_number" ColumnName="adhar_number" />
+                <ScalarProperty Name="admission_status" ColumnName="admission_status" />
+                <ScalarProperty Name="student_address" ColumnName="student_address" />
+                <ScalarProperty Name="student_gender" ColumnName="student_gender" />
+                <ScalarProperty Name="student_dob" ColumnName="student_dob" />
+                <ScalarProperty Name="student_father_name" ColumnName="student_father_name" />
+                <ScalarProperty Name="student_name" ColumnName="student_name" />
+                <ScalarProperty Name="document_path" ColumnName="document_path" />
+                <ScalarProperty Name="sslc_marks" ColumnName="sslc_marks" />
+                <ScalarProperty Name="puc_marks" ColumnName="puc_marks" />
+                <ScalarProperty Name="degreee_marks" ColumnName="degreee_marks" />
+                <ScalarProperty Name="course_ID" ColumnName="course_ID" />
+                <ScalarProperty Name="admission_ID" ColumnName="admission_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

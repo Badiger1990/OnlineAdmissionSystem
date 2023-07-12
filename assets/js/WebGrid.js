@@ -1,32 +1,4 @@
-﻿////<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-////    <script type="text/javascript" src="https://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-<script type="text/javascript">
-
-        $(function () {
-            var row = $("#WebGrid TBODY tr:eq(0)");
-            if ($("#WebGrid TBODY tr").length > 1) {
-                row.remove();
-            } else {
-                row.find(".label").html("");
-                row.find(".text").val("");
-                row.find(".link").hide();
-            }
-        });
-
-        function AppendRow(row, customerId, name, country) {
-            //Bind CustomerId.
-            $(".CustomerId", row).find(".label").html(customerId);
- 
-            //Bind Name.
-            $(".Name", row).find(".label").html(name);
-            $(".Name", row).find(".text").val(name);
- 
-            //Bind Country.
-            $(".Country", row).find(".label").html(country);
-            $(".Country", row).find(".text").val(country);
-            row.find(".link").show();
-            $("#WebGrid TBODY").append(row);
-        };
+﻿<script>
  
         //Add event handler.
         $("body").on("click", "#btnAdd", function () {
@@ -34,7 +6,7 @@
             var txtCountry = $("#txtCountry");
             $.ajax({
                 type: "POST",
-                url: "/Home/InsertCustomer",
+                url: "/AdminView/InsertCustomer",
                 data: '{name: "' + txtName.val() + '", country: "' + txtCountry.val() + '" }',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",

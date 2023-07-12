@@ -13,6 +13,7 @@ namespace OnlineAdmissionSystem.Models
 
         }
 
+        public int DeptID { get; set; }
         public string DeptName { get; set; }
         public string DeptHead { get; set; }
 
@@ -24,7 +25,7 @@ namespace OnlineAdmissionSystem.Models
 
         public string CourseFees { get; set; }
 
-        public string SelectedList { get; set; }
+        public string SelectedDepartment { get; set; }
         public List<SelectListItem> DeptList{ get; set; }
     }
 

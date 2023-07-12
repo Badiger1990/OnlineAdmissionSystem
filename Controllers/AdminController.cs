@@ -32,47 +32,45 @@ namespace OnlineAdmissionSystem.Controllers
                     adminVM.Course_Duration = item.Course_duration.ToString();
                     adminVM.Course_substream = item.Course_substream;
                     adminVM.Course_ID = item.Course_ID;
-                    //adminVM.Course_fees = (double)item.Course_Fees?? 0.0 :(double)item.Course_Fees;
+                    if (item.Course_Fees != null)
+                    {
+                        adminVM.Course_fees = (double)item.Course_Fees;
+                    }
                     listAdminVMs.Add(adminVM);
-                    //listAdminVMs.AddRange(data);
-                    //foreach (var course in item.tbl_courses)
-                    //{
-                    //    adminVM.Course_ID = course.Course_ID;
-                    //    adminVM.Course_Name = course.Course_Name;
-                    //    adminVM.Course_Duration = course.Course_duration.ToString();
-                    //    adminVM.Course_substream = course.Course_substream;
-                    //    adminVMs.Add(adminVM);
-
-                    //}
+                    
                 }
-                //adminVMs.AddRange((IEnumerable<AdminVM>)data);
                 return View(listAdminVMs.ToList());
             }
         }
 
-        public ActionResult SaveDepartment(AdminVM adminVM)
+        [HttpPost]
+        public JsonResult SaveDepartmentCourse(string departmentName,string departmentHead,string courseName,string courseDuration,
+            string courseSubstream,string courseFees)
         {
-            using (SmartAdmissionSystemDataEntities db=new SmartAdmissionSystemDataEntities())
+            tbl_department department = new tbl_department();
+            using (SmartAdmissionSystemDataEntities entities = new SmartAdmissionSystemDataEntities())
             {
-                tbl_department dept = new tbl_department();
-                dept.Dept_Name = adminVM.Dept_Name;
-                dept.Dept_head = adminVM.Dept_Head;
-                db.tbl_department.Add(dept);
-                db.SaveChanges();
-                int deptID = dept.Dept_ID;
-                tbl_courses course = new tbl_courses();
-                course.Dept_ID = deptID;
-                course.Course_Name = adminVM.Course_Name;
-                course.Course_duration = Convert.ToInt32(adminVM.Course_Duration);
-                course.Course_substream = adminVM.Course_substream;
-                db.tbl_courses.Add(course);
-                db.SaveChanges();
-                adminVM.StatusMessage = "Details saved Successfully!";
+                tbl_courses courses = new tbl_courses();
+                
+                courses.Course_Name = courseName;
+                courses.Course_duration = (int?)Convert.ToInt64(courseDuration);
+                courses.Course_substream = courseSubstream;
+                courses.Course_Fees = Convert.ToDouble(courseFees);
+                department.Dept_Name = departmentName;
+                department.Dept_head = departmentHead;
+                department.tbl_courses.Add(courses);
+                entities.tbl_department.Add(department);
+                entities.SaveChanges();
             }
-            
-            //return Content("Details Saved Successfully!");
-            //return RedirectToAction("AdminView", adminVM);
-            return View("AdminView");
+
+            return Json(department);
+        }
+
+        [HttpPost]
+        public ActionResult EditDepartmentCourse()
+        {
+
+            return View();
         }
     }
 }

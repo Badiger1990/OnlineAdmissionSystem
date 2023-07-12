@@ -1,7 +1,7 @@
-﻿@model OnlineAdmissionSystem.Models.DepartmentDataVM
-                    
-@{ 
-    ViewBag.Title = "Enquiry";
+﻿@model OnlineAdmissionSystem.Models.AdmissionTransactionModel
+
+@{
+    ViewBag.Title = "Admission Request";
 }
 @{
     Layout = null;
@@ -31,26 +31,22 @@
     <link href="~/assets/css/SignUpStyles.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.7.0.min.js"></script>
     <script>
-        @*$(document).ready(function () {
+        $(document).ready(function () {
             $("#ddlDepartments").change(function () {
                 var url = "@Url.Content("~/StudentEnq/GetDepartmentByID")";
                 $.getJSON(url, { id: $("#ddlDepartments").val() }, function (data) {
                     alert($("ddlDepartments").val());
                 })
             });
-        });*@
+        });
 
         $(document).ready(function () {
-            $("#ddlCourses").change(function () {
-                /*alert($("#ddlCourses").val()*/
-                //if ($("#ddlCourses").val() == 24) {
-                //    $("#divMCA").hide();
-                //}
-                var selectedValue = $("#ddlCourses").val();
-                $("div.courseDiv").hide();
-                $("#show" + selectedValue).show();
-                //alert(selectedValue);
-            });
+            $("#ddlCourses").change(funcation)()
+            {
+                if (this.value==24) {
+                    $("#divMCA").hide();
+                }
+            }
         });
     </script>
 </head>
@@ -83,8 +79,8 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="@Url.Action("Index","Home")" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="#services">Enquiry</a></li>
-                            <li class="scroll-to-section"><a href="@Url.Action("Index","AdmissionRequest")">Admission</a></li>
+                            <li class="scroll-to-section"><a href="@Url.Action("Enquiry","StudentEnq")">Enquiry</a></li>
+                            <li class="scroll-to-section"><a href="#courses">Admission</a></li>
                             @*<li class="scroll-to-section"><a href="#team">Team</a></li>*@
                             @*<li class="scroll-to-section"><a href="@Url.Action("SignUp","SignUp")">SignUp</a></li>*@
                             <li class="scroll-to-section"><a href="@Url.Action("SignIn","SignIn")">Sign Out</a></li>
@@ -110,90 +106,72 @@
         </div>
     </div>
     <div id="centerTableAllign" class="mb-3">
-        <h3 style="padding-bottom:30px">Enquiry form</h3>
+        <h3 style="padding-bottom:30px">Admission form</h3>
+        @using (Html.BeginForm("Index", "AdmissionRequest", FormMethod.Post))
+        {
+    <table>
+        <tr>
+            <td>Select course</td>
+            <td>
+                @Html.DropDownList("Course_ID", (IEnumerable<SelectListItem>)ViewBag.courses, "Select Courses", new { id = "ddlCourses" })
+
+            </td>
+        </tr>
+        <tr>
+            <td>Enter degree marks(%)</td>
+            <td>@Html.EditorFor(model => model.Degreee_marks)</td>
+        </tr>
+        <tr>
+            <td>Enter PUC marks(%)</td>
+            <td>@Html.EditorFor(model => model.Puc_marks)</td>
+        </tr>
+        <tr>
+            <td>Enter SSLC marks(%)</td>
+            <td>@Html.EditorFor(model => model.Sslc_marks)</td>
+        </tr>
+        <tr>
+            <td>Student Full name</td>
+            <td>@Html.EditorFor(model => model.Student_name)</td>
+        </tr>
+        <tr>
+            <td>Student Father name</td>
+            <td>@Html.EditorFor(model => model.Student_father_name)</td>
+        </tr>
+        <tr>
+            <td>Student Date of birth</td>
+            <td>@Html.EditorFor(model => model.Student_dob)</td>
+        </tr>
+        <tr>
+            <td>Student Gender</td>
+            <td>@Html.EditorFor(model => model.Student_gender)</td>
+        </tr>
+        <tr>
+            <td>Student address</td>
+            <td>@Html.EditorFor(model => model.Student_address)</td>
+        </tr>
+        <tr>
+            <td>Admission status :</td>
+            <td>@Html.LabelFor(model => model.Admission_status)</td>
+        </tr>
+        <tr>
+            <td>Student ADHAR number</td>
+            <td>@Html.EditorFor(model => model.Adhar_number)</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="btnAdmission"/>
+            </td>
+            <td>
+                <input type="button" name="btnClear" value="Clear" />
+            </td>
+        </tr>
+    </table>
+        }
         @*@Html.DropDownList("Dept_ID", (IEnumerable<SelectListItem>)ViewBag.departments, "Select Department", new { id = "ddlDepartments" })*@
-        @Html.DropDownList("Course_ID", (IEnumerable<SelectListItem>)ViewBag.courses, "Select Courses", new { id = "ddlCourses" })
 
     </div>
-    <div id="showMCA" class="courseDiv">
-        <table>
-            <tr>
-                <td>Course</td>
-                <td>MCA</td>
-            </tr>
-            <tr>
-                <td>Duration</td>
-                <td>2 years</td>
-            </tr>
-            <tr>
-                <td>Fees</td>
-                <td>1 Lakh per year</td>
-            </tr>
-            <tr>
-                <td>Exam fees</td>
-                <td>3000 per year</td>
-            </tr>
-        </table>
-    </div>
-    <div id="showMBA" class="courseDiv">
-        <table>
-            <tr>
-                <td>Course</td>
-                <td>MBA</td>
-            </tr>
-            <tr>
-                <td>Duration</td>
-                <td>2 years</td>
-            </tr>
-            <tr>
-                <td>Fees</td>
-                <td>2 Lakh per year</td>
-            </tr>
-            <tr>
-                <td>Exam fees</td>
-                <td>2500 per year</td>
-            </tr>
-        </table>
-    </div>
-    <div id="showBCA" class="courseDiv">
-        <table>
-            <tr>
-                <td>Course</td>
-                <td>BCA</td>
-            </tr>
-            <tr>
-                <td>Duration</td>
-                <td>3 years</td>
-            </tr>
-            <tr>
-                <td>Fees</td>
-                <td>50 thousend per year</td>
-            </tr>
-            <tr>
-                <td>Exam fees</td>
-                <td>2500 per year</td>
-            </tr>
-        </table>
-    </div>
-    <div id="showBBA" class="courseDiv">
-        <table>
-            <tr>
-                <td>Course</td>
-                <td>BBA</td>
-            </tr>
-            <tr>
-                <td>Duration</td>
-                <td>3 years</td>
-            </tr>
-            <tr>
-                <td>Fees</td>
-                <td>60 thousend per year</td>
-            </tr>
-            <tr>
-                <td>Exam fees</td>
-                <td>2500 per year</td>
-            </tr>
-        </table>
+    <div>
+
     </div>
     <footer>
         <div class="container">

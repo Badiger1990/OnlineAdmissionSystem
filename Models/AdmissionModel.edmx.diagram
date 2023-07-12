@@ -9,6 +9,9 @@
         <EntityTypeShape EntityType="SmartAdmissionSystemDataModel.tbl_department" Width="1.5" PointX="3.375" PointY="1.25" />
         <AssociationConnector Association="SmartAdmissionSystemDataModel.FK__tbl_cours__Dept___4CA06362" />
         <EntityTypeShape EntityType="SmartAdmissionSystemDataModel.UserMaster" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SmartAdmissionSystemDataModel.tbl_AdmissionTransactions" Width="1.5" PointX="7.875" PointY="0.75" />
+        <AssociationConnector Association="SmartAdmissionSystemDataModel.FK__tbl_Admis__cours__03F0984C" />
+        <AssociationConnector Association="SmartAdmissionSystemDataModel.FK__tbl_Admis__UserI__02FC7413" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

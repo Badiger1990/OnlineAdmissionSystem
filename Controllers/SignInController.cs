@@ -16,7 +16,7 @@ namespace OnlineAdmissionSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Authorise(UserMaster userMaster)
+        public ActionResult Authorise(SignInModels userMaster)
         {
             using (SmartAdmissionSystemDataEntities db=new SmartAdmissionSystemDataEntities())
             {

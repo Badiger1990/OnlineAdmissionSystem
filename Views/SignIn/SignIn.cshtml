@@ -1,4 +1,4 @@
-﻿@model OnlineAdmissionSystem.Models.UserMaster
+﻿@model OnlineAdmissionSystem.Models.SignInModels
 
 @{
     Layout = null;
@@ -83,8 +83,8 @@
             </div>
         </div>
     </div>
-    <div id="signup-table">
-
+    <div id="centerTableAllign">
+        <h3 style="padding-bottom:30px">Login </h3>
         @using (Html.BeginForm("Authorise", "SignIn", FormMethod.Post))
         {
             <table>

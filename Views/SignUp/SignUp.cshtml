@@ -1,4 +1,4 @@
-﻿@model OnlineAdmissionSystem.Models.UserMaster
+﻿@model OnlineAdmissionSystem.Models.RegistrationModel
 
 @{
     Layout = null;
@@ -83,69 +83,79 @@
             </div>
         </div>
     </div>
-    <div style="margin:35px; width:50%; padding:20px;">
-
+    <div id="centerTableAllign">
+        <h3 style="padding-bottom:20px">User registration</h3>
         @using (Html.BeginForm("SignUp", "SignUp",FormMethod.Post))
         {
-        <table style="padding:30px">
-            <tr>
-                <td>
-                    @Html.LabelFor(model => model.UserName)
-                </td>
-                <td>
-                    @Html.EditorFor(Model => Model.UserName)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.ValidationMessageFor(model => model.UserName)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.LabelFor(model => model.Email_ID)
-                <td>
-                    @Html.EditorFor(model => model.Email_ID)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.LabelFor(model => model.Password)
-                </td>
-                <td>
-                    @Html.EditorFor(Model => Model.Password)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.ValidationMessageFor(model => model.UserName)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.LabelFor(model => model.Phone_Number)
-                <td>
-                    @Html.EditorFor(model => model.Phone_Number)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.LabelFor(model => model.Gender)
-                <td>
-                    @Html.EditorFor(model => model.Gender)
-                </td>
-            </tr>
+    <table style="padding:30px">
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.UserName)
+            </td>
+            <td>
+                @Html.EditorFor(Model => Model.UserName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ValidationMessageFor(model => model.UserName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Email_ID)
+            <td>
+                @Html.EditorFor(model => model.Email_ID)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @* @Html.LabelFor(model => model.Password)*@
+                @*<label(model => model.create password)*@
+                <label>Create password</label>
+            </td>
+            <td>
+                @Html.EditorFor(Model => Model.Password)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Confirm password</label>
+            </td>
+            <td>
+                @Html.EditorFor(Model => Model.Password)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ValidationMessageFor(model => model.UserName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Phone_Number)
+            <td>
+                @Html.EditorFor(model => model.Phone_Number)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Gender)
+            <td>
+                @Html.EditorFor(model => model.Gender)
+            </td>
+        </tr>
 
-            <tr style="text-align:right">
-                <td>
-                </td>
-                <td>
-                    <input type="submit" value="submit" name="btnSubmit" />
-                    <input type="reset" value="clear" name="btnClear" />
-                </td>
+        <tr style="text-align:right">
+            <td>
+            </td>
+            <td>
+                <input type="submit" value="submit" name="btnSubmit" />
+                <input type="reset" value="clear" name="btnClear" />
+            </td>
 
-            </tr>
-        </table>
+        </tr>
+    </table>
         }
     </div>
     <div>
