@@ -111,6 +111,7 @@
     <Content Include="assets\images\banner-item-02.jpg" />
     <Content Include="assets\images\banner-item-03.jpg" />
     <Content Include="assets\images\Bio Lab.jpg" />
+    <Content Include="assets\images\Canteen.jpg" />
     <Content Include="assets\images\chem bio.jpg" />
     <Content Include="assets\images\Computer lab.jpg" />
     <Content Include="assets\images\contact-dec-01.png" />
@@ -134,6 +135,7 @@
     <Content Include="assets\images\member-04.jpg" />
     <Content Include="assets\images\online.jpg" />
     <Content Include="assets\images\phy lab.jpg" />
+    <Content Include="assets\images\placements.jpg" />
     <Content Include="assets\images\post.jpg" />
     <Content Include="assets\images\prashant sir.jpg" />
     <Content Include="assets\images\ravi sir.jpg" />
@@ -147,6 +149,7 @@
     <Content Include="assets\images\suman mam.jpg" />
     <Content Include="assets\images\testimonial-author.jpg" />
     <Content Include="assets\images\under.jpg" />
+    <Content Include="assets\images\water facility.jpg" />
     <Content Include="assets\js\counter.js" />
     <Content Include="assets\js\custom.js" />
     <Content Include="assets\js\isotope.min.js" />

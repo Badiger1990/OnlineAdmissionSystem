@@ -90,7 +90,7 @@
     <table style="padding:30px">
         <tr>
             <td>
-                @Html.LabelFor(model => model.UserName)
+                User Name
             </td>
             <td>
                 @Html.EditorFor(Model => Model.UserName)
@@ -103,7 +103,7 @@
         </tr>
         <tr>
             <td>
-                @Html.LabelFor(model => model.Email_ID)
+                Email Id*
             <td>
                 @Html.EditorFor(model => model.Email_ID)
             </td>
@@ -115,7 +115,7 @@
                 <label>Create password</label>
             </td>
             <td>
-                @Html.EditorFor(Model => Model.Password)
+                @Html.PasswordFor(Model => Model.Password)
             </td>
         </tr>
         <tr>
@@ -123,7 +123,7 @@
                 <label>Confirm password</label>
             </td>
             <td>
-                @Html.EditorFor(Model => Model.Password)
+                @Html.PasswordFor(Model => Model.Password)
             </td>
         </tr>
         <tr>

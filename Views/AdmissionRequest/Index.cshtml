@@ -41,12 +41,16 @@
         });
 
         $(document).ready(function () {
-            $("#ddlCourses").change(funcation)()
-            {
-                if (this.value==24) {
-                    $("#divMCA").hide();
+            $("#ddlCourses").change(function () {
+                var selectedCourse = $("#ddlCourses").val();
+
+                if (selectedCourse == "PG") {
+                    $("#showDegreeMarks").show();
                 }
-            }
+                else {
+                    $("#showDegreeMarks").hide();
+                }
+            });
         });
     </script>
 </head>
@@ -107,7 +111,7 @@
     </div>
     <div id="centerTableAllign" class="mb-3">
         <h3 style="padding-bottom:30px">Admission form</h3>
-        @using (Html.BeginForm("Index", "AdmissionRequest", FormMethod.Post))
+        @using (Html.BeginForm("SaveAdmissionRequest", "AdmissionRequest", FormMethod.Post))
         {
     <table>
         <tr>
@@ -117,7 +121,7 @@
 
             </td>
         </tr>
-        <tr>
+        <tr id="showDegreeMarks" class="courseDiv">
             <td>Enter degree marks(%)</td>
             <td>@Html.EditorFor(model => model.Degreee_marks)</td>
         </tr>
@@ -151,15 +155,19 @@
         </tr>
         <tr>
             <td>Admission status :</td>
-            <td>@Html.LabelFor(model => model.Admission_status)</td>
+            <td style="background-color:orange">@Html.LabelFor(model => model.Admission_status, "Pending")</td>
         </tr>
         <tr>
             <td>Student ADHAR number</td>
             <td>@Html.EditorFor(model => model.Adhar_number)</td>
         </tr>
+        @*<tr>
+            <td>Attach required documents</td>
+            <td>@Html.EditorFor(model => model.Document_path)</td>
+        </tr>*@
         <tr>
             <td>
-                <input type="submit" name="btnAdmission"/>
+                <input type="submit" name="btnAdmission" />
             </td>
             <td>
                 <input type="button" name="btnClear" value="Clear" />

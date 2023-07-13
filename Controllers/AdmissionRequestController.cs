@@ -26,10 +26,22 @@ namespace OnlineAdmissionSystem.Controllers
                 ViewBag.courses = courses.Select(x => new SelectListItem()
                 {
                     Text = x.Course_Name.ToString(),
-                    Value = x.Course_ID.ToString()
+                    Value = x.tbl_department.Dept_Name.ToString()
                 });
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult SaveAdmissionRequest(tbl_AdmissionTransactions data)
+        {
+            using (SmartAdmissionSystemDataEntities db=new SmartAdmissionSystemDataEntities())
+            {
+                
+                db.tbl_AdmissionTransactions.Add(data);
+                db.SaveChanges();
+            }
+            return View(data);
         }
     }
 }

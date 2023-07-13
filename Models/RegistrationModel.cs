@@ -19,11 +19,16 @@ namespace OnlineAdmissionSystem.Models
         public string Password { get; set; }
 
         [NotMapped]
+        [Required(ErrorMessage = "Confirmed Password is required")]
         public string ConfirmPassword { get; set; }
         public string UserType { get; set; }
+        [Required]
         public string Email_ID { get; set; }
+        [Required]
         public string Gender { get; set; }
         
+        [Required]
+        [Range(0,9, ErrorMessage ="Enter valid number")]
         public Nullable<int> Phone_Number { get; set; }
     }
 }
