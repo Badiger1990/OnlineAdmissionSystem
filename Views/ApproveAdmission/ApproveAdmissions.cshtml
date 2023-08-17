@@ -1,10 +1,10 @@
-﻿@model IEnumerable<OnlineAdmissionSystem.Models.AdminVM>
+﻿@model IEnumerable<OnlineAdmissionSystem.Models.AdmissionTransactionModel>
 
 @{
     Layout = null;
 }
 @{
-    WebGrid grid = new WebGrid(source: Model,canPage: true, canSort:false);
+    WebGrid grid = new WebGrid(source: Model, canPage: true, canSort: false);
 }
 
 <!DOCTYPE html>
@@ -90,9 +90,9 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="@Url.Action("Index","Home")" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="@Url.Action("ApproveAdmissions","ApproveAdmission")">Approve admission</a></li>
+                            <li class="scroll-to-section"><a href="#services">Approve admission</a></li>
                             @*<li class="scroll-to-section"><a href="#courses">Courses</a></li>
-                            <li class="scroll-to-section"><a href="#team">Team</a></li>*@
+                                <li class="scroll-to-section"><a href="#team">Team</a></li>*@
                             <li class="scroll-to-section"><a href="@Url.Action("SignUp","SignUp")">Registration</a></li>
                             <li class="scroll-to-section"><a href="@Url.Action("SignIn","SignIn")">Sign In</a></li>
                         </ul>
@@ -116,77 +116,43 @@
         </div>
     </div>
     <div style="margin:25px; width:50%;  padding:10px;">
-        <h3 style="padding-bottom:20px">Admin console</h3>
+        <h3 style="padding-bottom:20px">Admissions requests</h3>
         @grid.GetHtml(
       htmlAttributes: new { @id = "WebGrid", @class = "Grid" },
       columns: grid.Columns(
-               grid.Column(header: "Course Id", format:
-                                                @<span class="label">@item.Course_ID</span>, style: "Dept_ID"),
-@*grid.Column(header: "Department Name", format: @<span>
-            <span class="label">@item.Dept_Name</span>
-            <input class="text" type="text" value="@item.Dept_Name" style="display:none" />
-        </span>, style: "Dept_Name"),
-grid.Column(header: "Department Head", format: @<span>
-                <span class="label">@item.Dept_Head</span>
-                <input class="text" type="text" value="@item.Dept_Head" style="display:none" />
-            </span>, style: "Dept_Head"),*@
+               grid.Column(header: "Admission Id", format:
+                                                    @<span class="label">@item.Admission_ID</span>, style: "Admission_ID"),
 grid.Column(header: "Course Name", format: @<span>
-                    <span class="label">@item.Course_Name</span>
-                    <input class="text" type="text" value="@item.Course_Name" style="display:none" />
-                </span>, style: "Course_Name"),
-grid.Column(header: "Course duration", format: @<span>
-                        <span class="label">@item.Course_duration</span>
-                        <input class="text" type="text" value="@item.Course_duration" style="display:none" />
-                    </span>, style: "Course_duration"),
-grid.Column(header: "Course Substreem", format: @<span>
-                            <span class="label">@item.Course_Substream</span>
-                            <input class="text" type="text" value="@item.Course_Substream" style="display:none" />
-                        </span>, style: "Course_Substream"),
-grid.Column(header: "Course Fees", format: @<span>
-                                <span class="label">@item.Course_fees</span>
-                                <input class="text" type="text" value="@item.Course_fees" style="display:none" />
-                            </span>, style: "Course_fees"),
-                          grid.Column(format:@<span class="link">
-                                                                    <a class="Edit" href="javascript:;">Edit</a>
-                                                                    <a class="Update" href="javascript:;" style="display:none">Update</a>
-                                                                    <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
-                                                                    <a class="Delete" href="javascript:;">Delete</a>
-                                                                </span>)))
-        <br />
-        <table border="0" cellpadding="10" cellspacing="0">
-            <tr>
-                <td style="width: 150px">
-                    Department Name:<br />
-                    <input type="text" id="txtDeptName" style="width:140px" />
-                </td>
-                <td style="width: 150px">
-                    Department Head:<br />
-                    <input type="text" id="txtDeptHead" style="width:140px" />
-                </td>
-                <td style="width: 150px">
-                    Course Name:<br />
-                    <input type="text" id="txtCourseName" style="width:140px" />
-                </td>
-                <td style="width: 150px">
-                    Course Duration:<br />
-                    <input type="number" id="txtCourseDuration" style="width:140px" />
-                </td>
-                <td style="width: 150px">
-                    Course Substream:<br />
-                    <input type="text" id="txtCourseSubstream" style="width:140px" />
-                </td>
-                <td style="width: 150px">
-                    Course Fees:<br />
-                    <input type="text" id="txtCourseFees" style="width:140px" />
-                </td>
-                <td style="width: 100px">
-                    <br />
-                    <input type="button" id="btnAdd" value="Add" />
-                </td>
-            </tr>
-            <tr>
-            </tr>
-        </table>
+            <span class="label">@item.Course_Name</span>
+            <input class="text" type="text" value="@item.Course_Name" style="display:none" />
+        </span>, style: "Course_Name"),
+grid.Column(header: "Student Name", format: @<span>
+                <span class="label">@item.Student_name</span>
+                <input class="text" type="text" value="@item.Student_name" style="display:none" />
+            </span>, style: "Student_name"),
+grid.Column(header: "Father Name", format: @<span>
+                    <span class="label">@item.Student_father_name</span>
+                    <input class="text" type="text" value="@item.Student_father_name" style="display:none" />
+                </span>, style: "Student_father_name"),
+grid.Column(header: "Date of birth", format: @<span>
+                        <span class="label">@item.Student_dob</span>
+                        <input class="text" type="text" value="@item.Student_dob" style="display:none" />
+                    </span>, style: "Student_dob"),
+grid.Column(header: "Gender", format: @<span>
+                            <span class="label">@item.Student_gender</span>
+                            <input class="text" type="text" value="@item.Student_gender" style="display:none" />
+                        </span>, style: "Student_gender"),
+grid.Column(header: "Religion", format: @<span>
+                                <span class="label">@item.Student_religion</span>
+                                <input class="text" type="text" value="@item.Student_religion" style="display:none" />
+                            </span>, style: "Student_religion"),
+                   grid.Column(format:@<span class="link">
+                                                            <a class="Edit" href="javascript:;">Approve</a>
+                                                            <a class="Update" href="javascript:;" style="display:none">Update</a>
+                                                            <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
+                                                            <a class="Delete" href="javascript:;">Reject</a>
+                                                        </span>)))
+        
     </div>
 
 
@@ -290,16 +256,24 @@ grid.Column(header: "Course Fees", format: @<span>
         //Edit event handler.
         $("body").on("click", "#WebGrid TBODY .Edit", function () {
             var row = $(this).closest("tr");
-            $("td", row).each(function () {
-                if ($(this).find(".text").length > 0) {
-                    $(this).find(".text").show();
-                    $(this).find(".label").hide();
+            var courseId = row.find(".label").html();
+            alert(courseId);
+            $.ajax({
+                type: "POST",
+                url: "/ApproveAdmission/Approve",
+                data: '{courseId: ' + courseId + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if ($("#WebGrid TBODY tr").length == 1) {
+                        row.find(".label").html("");
+                        row.find(".text").val("");
+                        row.find(".link").hide();
+                    } else {
+                        row.remove();
+                    }
                 }
             });
-            row.find(".Update").show();
-            row.find(".Cancel").show();
-            row.find(".Delete").hide();
-            $(this).hide();
         });
 
         //Update event handler.
@@ -386,12 +360,3 @@ grid.Column(header: "Course Fees", format: @<span>
 
 </body>
 </html>
-@*<script>
-    $(function () {
-        $("#save-btn").click(function () {
-            debugger
-            $("#status-id").show();
-        })
-    });
-
-</script>*@

@@ -1,0 +1,198 @@
+﻿@model OnlineAdmissionSystem.Models.AdmissionTransactionModel
+
+@{
+    ViewBag.Title = "Admission Request";
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Markandeya University</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/assets/css/templatemo-scholar.css">
+    <link rel="stylesheet" href="~/assets/css/owl.css">
+    <link rel="stylesheet" href="~/assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link href="~/assets/css/SignUpStyles.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <title>PaymentWindow</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            <h1>Markandeya University</h1>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="@Url.Action("Index","Home")" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="@Url.Action("Enquiry","StudentEnq")">Enquiry</a></li>
+                            <li class="scroll-to-section"><a href="#courses">Admission</a></li>
+                            @*<li class="scroll-to-section"><a href="#team">Team</a></li>*@
+                            @*<li class="scroll-to-section"><a href="@Url.Action("SignUp","SignUp")">SignUp</a></li>*@
+                            <li class="scroll-to-section"><a href="@Url.Action("SignIn","SignIn")">Sign Out</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="main-banner" id="top">
+        <div class="container">
+            @*<div class="row">
+                    <div class="col-lg-12">
+                        <h3>Student Enquiry form</h3>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+    <div>
+        <h2>Make payment</h2>
+    </div>
+    <p>Click on the buttons inside the tabbed menu:</p>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'London')">UPI Pay</button>
+        <button class="tablinks" onclick="openCity(event, 'Paris')">QR Code</button>
+        @*<button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>*@
+    </div>
+
+    <div id="London" class="tabcontent">
+        <h3>UPI Pay</h3>
+        <input type="text" name="UPIName" /><br /><br />
+        <input type="button" name="btnDone" value="Done !" />
+    </div>
+
+    <div id="Paris" class="tabcontent">
+        <h3>QR Code</h3>
+        <img width="150" height="150" src="~/assets/images/PayMent.png" /><br /><br />
+        <input type="button" name="btnDone" value="Done !" />
+    </div>
+
+    <div id="Tokyo" class="tabcontent">
+        <h3>Tokyo</h3>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>
+
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+    <footer>
+        <div class="container">
+            <div class="col-lg-12">
+                <p>Copyright © 2036 Markandeya Univeristy. All rights reserved. &nbsp;&nbsp;&nbsp; </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/isotope.min.js"></script>
+    <script src="~/assets/js/owl-carousel.js"></script>
+    <script src="~/assets/js/counter.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @*<script src="~/Scripts/jquery-1.8.0.min.js"></script>*@
+
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+
+</body>
+</html>

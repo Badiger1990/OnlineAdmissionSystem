@@ -52,6 +52,11 @@
                 }
             });
         });
+
+        $(document).ready(function () {
+            $("#dob_date").datepicker({ dateFormat: 'dd/mm/yy' });
+        });
+
     </script>
 </head>
 
@@ -130,36 +135,74 @@
             <td>@Html.EditorFor(model => model.Puc_marks)</td>
         </tr>
         <tr>
+            <td></td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Puc_marks)
+            </td>
+        </tr>
+        <tr>
             <td>Enter SSLC marks(%)</td>
             <td>@Html.EditorFor(model => model.Sslc_marks)</td>
         </tr>
         <tr>
-            <td>Student Full name</td>
+            <td></td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Sslc_marks)
+            </td>
+        </tr>
+        <tr>
+            <td>Full name</td>
             <td>@Html.EditorFor(model => model.Student_name)</td>
         </tr>
         <tr>
-            <td>Student Father name</td>
+            <td></td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Student_name)
+            </td>
+        </tr>
+        <tr>
+            <td>Father name</td>
             <td>@Html.EditorFor(model => model.Student_father_name)</td>
         </tr>
         <tr>
-            <td>Student Date of birth</td>
-            <td>@Html.EditorFor(model => model.Student_dob)</td>
+            <td></td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Student_father_name)
+            </td>
         </tr>
         <tr>
-            <td>Student Gender</td>
+            <td>Date of birth</td>
+            <td>@Html.EditorFor(model => model.Student_dob, new { id = "#dob_date" })</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
             <td>@Html.EditorFor(model => model.Student_gender)</td>
         </tr>
         <tr>
-            <td>Student address</td>
+            <td></td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Student_gender)
+            </td>
+        </tr>
+        <tr>
+            <td>address</td>
             <td>@Html.EditorFor(model => model.Student_address)</td>
         </tr>
         <tr>
-            <td>Admission status :</td>
-            <td style="background-color:orange">@Html.LabelFor(model => model.Admission_status, "Pending")</td>
+            <td></td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Student_address)
+            </td>
         </tr>
         <tr>
-            <td>Student ADHAR number</td>
+            <td>ADHAR number</td>
             <td>@Html.EditorFor(model => model.Adhar_number)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Adhar_number)
+            </td>
         </tr>
         @*<tr>
             <td>Attach required documents</td>
@@ -167,10 +210,16 @@
         </tr>*@
         <tr>
             <td>
-                <input type="submit" name="btnAdmission" />
+                <input type="submit" name="btnAdmission" value="Take Admission!" />
             </td>
             <td>
-                <input type="button" name="btnClear" value="Clear" />
+                <input type="reset" name="btnClear" value="Clear" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                @Html.DisplayFor(model => model.InforMessage)
             </td>
         </tr>
     </table>
@@ -179,7 +228,21 @@
 
     </div>
     <div>
+        <div id="centralDiv">
+            <table cellpadding="20">
+                <tr>
+                    <td>Admission status :</td>
 
+                    <td style="background-color:orange">
+
+                        @ViewBag.AdmissionStatus
+                    </td>
+                    <td>
+                        <input type="submit" onclick="location.href='@Url.Action("PaymentWindow","MakePayment")'" name="btnMakePayment" value="Make Payment" />
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
     <footer>
         <div class="container">
@@ -197,7 +260,9 @@
     <script src="~/assets/js/owl-carousel.js"></script>
     <script src="~/assets/js/counter.js"></script>
     <script src="~/assets/js/custom.js"></script>
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     @*<script src="~/Scripts/jquery-1.8.0.min.js"></script>*@
 
     @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OnlineAdmissionSystem.Models;
+using OnlineAdmissionSystem.Utilities;
 
 namespace OnlineAdmissionSystem.Controllers
 {
@@ -18,34 +19,45 @@ namespace OnlineAdmissionSystem.Controllers
         [HttpPost]
         public ActionResult Authorise(SignInModels userMaster)
         {
-            using (SmartAdmissionSystemDataEntities db=new SmartAdmissionSystemDataEntities())
+            try
             {
-                var userDetails= db.UserMasters.Where(u=>u.UserName==userMaster.UserName && u.Password==userMaster.Password).FirstOrDefault();
-                if (userDetails == null)
+                using (SmartAdmissionSystemDataEntities db = new SmartAdmissionSystemDataEntities())
                 {
-                    userMaster.LoginErrorMessage = "Wrong Username or Password";
-                    return View("SignIn", userMaster);
-                }
-                else
-                {
-                    if (userDetails.UserType == null)
+                    var userDetails = db.UserMasters.Where(u => u.UserName == userMaster.UserName && u.Password == userMaster.Password).FirstOrDefault();
+                    if (userDetails == null)
                     {
-                        userMaster.LoginErrorMessage = "Invalid User";
+                        userMaster.LoginErrorMessage = "Wrong Username or Password";
                         return View("SignIn", userMaster);
                     }
+                    else
+                    {
+                        if (userDetails.UserType == null)
+                        {
+                            userMaster.LoginErrorMessage = "Invalid User";
+                            Log.Warn("Invalid user trying to login");
+                            return View("SignIn", userMaster);
+                        }
 
-                    Session["UserID"] = userMaster.UserID;
-                    if (userDetails.UserType.Equals("Admin"))
-                    {
-                        return RedirectToAction("AdminView", "Admin");
+                        Session["UserID"] = userDetails.UserID;
+                        if (userDetails.UserType.Equals("Admin"))
+                        {
+                            Log.Info(userDetails.UserName + " Logged in sucessfully..");
+                            return RedirectToAction("AdminView", "Admin");
+                        }
+                        else if (userDetails.UserType.ToLower().Equals("student"))
+                        {
+                            Log.Info(userDetails.UserName + " Logged in sucessfully..");
+                            return RedirectToAction("Enquiry", "StudentEnq");
+                        }
+                        return RedirectToAction("Index", "Home");
                     }
-                    else if(userDetails.UserType.Equals("Student"))
-                    {
-                        return RedirectToAction("Enquiry", "StudentEnq");
-                    }
-                    return RedirectToAction("Index", "Home");
                 }
             }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

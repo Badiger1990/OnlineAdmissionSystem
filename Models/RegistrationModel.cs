@@ -13,22 +13,28 @@ namespace OnlineAdmissionSystem.Models
         public int UserID { get; set; }
 
         [DisplayName("User Name")]
-        [Required]
+        [Required(ErrorMessage ="This field is required!")]
         public string UserName { get; set; }
+
         [Required(ErrorMessage ="Password is required")]
         public string Password { get; set; }
-
-        [NotMapped]
-        [Required(ErrorMessage = "Confirmed Password is required")]
-        public string ConfirmPassword { get; set; }
+                
+        //[Required(ErrorMessage = "Confirmed Password is required")]
+        //public string ConfirmPassword { get; set; }
         public string UserType { get; set; }
-        [Required]
+
+        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage ="This field is required")]
         public string Email_ID { get; set; }
-        [Required]
+        
+        [Required(ErrorMessage ="This field is required")]
         public string Gender { get; set; }
         
-        [Required]
+        [Required(ErrorMessage ="Enter valid number")]
         [Range(0,9, ErrorMessage ="Enter valid number")]
+        [DataType(DataType.PhoneNumber)]
         public Nullable<int> Phone_Number { get; set; }
+
+        public string InfoMessage { get; set; }
     }
 }

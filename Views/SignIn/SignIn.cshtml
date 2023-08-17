@@ -90,7 +90,6 @@
             <table>
                 <tr>
                     <td>
-                    <td>
                         @Html.LabelFor(model => model.UserName)
                     </td>
                     <td>
@@ -99,12 +98,11 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td>
+                    <td colspan="2">
                         @Html.ValidationMessageFor(model => model.UserName)
                     </td>
                 </tr>
                 <tr>
-                    <td>
                     <td>
                         @Html.LabelFor(model => model.Password)
                     </td>
@@ -114,8 +112,8 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td>
-                        @Html.ValidationMessageFor(model => model.UserName)
+                    <td colspan="2">
+                        @Html.ValidationMessageFor(model => model.Password)
                     </td>
                 </tr>
                 <tr>

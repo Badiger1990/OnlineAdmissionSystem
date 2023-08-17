@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="~/assets/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link href="~/assets/css/SignUpStyles.css" rel="stylesheet" />
-
+    
 </head>
 
 <body>
@@ -58,8 +58,8 @@
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="@Url.Action("Index","Home")" class="active">Home</a></li>
                             @*<li class="scroll-to-section"><a href="#services">Services</a></li>
-                            <li class="scroll-to-section"><a href="#courses">Courses</a></li>
-                            <li class="scroll-to-section"><a href="#team">Team</a></li>*@
+                                <li class="scroll-to-section"><a href="#courses">Courses</a></li>
+                                <li class="scroll-to-section"><a href="#team">Team</a></li>*@
                             <li class="scroll-to-section"><a href="@Url.Action("SignUp","SignUp")">Registration</a></li>
                             <li class="scroll-to-section"><a href="@Url.Action("SignIn","SignIn")">Sign In</a></li>
                         </ul>
@@ -83,79 +83,92 @@
             </div>
         </div>
     </div>
-    <div id="centerTableAllign">
+    <div id="centerTableAllign" >
         <h3 style="padding-bottom:20px">User registration</h3>
-        @using (Html.BeginForm("SignUp", "SignUp",FormMethod.Post))
+        @using (Html.BeginForm("SignUp", "SignUp", FormMethod.Post))
         {
-    <table style="padding:30px">
-        <tr>
-            <td>
-                User Name
-            </td>
-            <td>
-                @Html.EditorFor(Model => Model.UserName)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.ValidationMessageFor(model => model.UserName)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Email Id*
-            <td>
-                @Html.EditorFor(model => model.Email_ID)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @* @Html.LabelFor(model => model.Password)*@
-                @*<label(model => model.create password)*@
-                <label>Create password</label>
-            </td>
-            <td>
-                @Html.PasswordFor(Model => Model.Password)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>Confirm password</label>
-            </td>
-            <td>
-                @Html.PasswordFor(Model => Model.Password)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.ValidationMessageFor(model => model.UserName)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.LabelFor(model => model.Phone_Number)
-            <td>
-                @Html.EditorFor(model => model.Phone_Number)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.LabelFor(model => model.Gender)
-            <td>
-                @Html.EditorFor(model => model.Gender)
-            </td>
-        </tr>
+            <table style="padding:30px">
+                <tr>
+                    <td>
+                        User Name
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.UserName)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.UserName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email Id
+                    <td>
+                        @Html.EditorFor(model => model.Email_ID)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.ValidationMessageFor(model=>model.Email_ID)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Create password</label>
+                    </td>
+                    <td>
+                        @Html.PasswordFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Confirm password</label>
+                    </td>
+                    <td>
+                        @Html.PasswordFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Phone number</label>
+                    <td>
+                        @Html.EditorFor(model => model.Phone_Number)
+                    </td>                    
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model=>model.Phone_Number)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Gender</label>
+                    <td>
+                        @Html.EditorFor(model => model.Gender)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model=>model.Gender)</td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="submit" value="submit" name="btnSubmit" />
+                        <input type="reset" value="clear" name="btnClear" />
+                    </td>
 
-        <tr style="text-align:right">
-            <td>
-            </td>
-            <td>
-                <input type="submit" value="submit" name="btnSubmit" />
-                <input type="reset" value="clear" name="btnClear" />
-            </td>
-
-        </tr>
-    </table>
+                </tr>
+            </table>
         }
     </div>
     <div>
@@ -181,6 +194,8 @@
     <script src="~/assets/js/owl-carousel.js"></script>
     <script src="~/assets/js/counter.js"></script>
     <script src="~/assets/js/custom.js"></script>
-
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>

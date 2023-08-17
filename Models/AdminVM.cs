@@ -26,8 +26,10 @@ namespace OnlineAdmissionSystem.Models
         [Required(ErrorMessage = "This field is required")]
         public string Course_Name { get; set; }
         [Required(ErrorMessage = "This field is required")]
+        [Range(0, 3)]
         public string Course_Duration { get; set; }
         [Required(ErrorMessage = "This field is required")]
+        
         public string Course_substream { get; set; }
 
         public double Course_fees { get; set; }
