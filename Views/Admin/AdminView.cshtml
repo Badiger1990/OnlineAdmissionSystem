@@ -382,6 +382,14 @@ grid.Column(header: "Course Fees", format: @<span>
                 });
             }
         });
+
+        $(function () {
+            $("#btnAdd").click(function () {
+                alert("Inserted sucessfully");
+                window.location.reload();
+                //document.reload();
+            })
+        });
     </script>
 
 </body>

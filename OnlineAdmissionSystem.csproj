@@ -138,6 +138,7 @@
     <Content Include="assets\images\member-03.jpg" />
     <Content Include="assets\images\member-04.jpg" />
     <Content Include="assets\images\online.jpg" />
+    <Content Include="assets\images\PayMent.jpeg" />
     <Content Include="assets\images\PayMent.png" />
     <Content Include="assets\images\phy lab.jpg" />
     <Content Include="assets\images\placements.jpg" />

@@ -50,6 +50,7 @@ namespace OnlineAdmissionSystem.Controllers
         {
             tbl_department department = new tbl_department();
             tbl_courses courses = new tbl_courses();
+            AdminVM adminVM = new AdminVM();
 
             using (SmartAdmissionSystemDataEntities entities = new SmartAdmissionSystemDataEntities())
             {
@@ -60,11 +61,11 @@ namespace OnlineAdmissionSystem.Controllers
                 courses.Course_Fees = Convert.ToDouble(courseFees);
                 department.Dept_Name = departmentName;
                 department.Dept_head = departmentHead;
+                adminVM.StatusMessage = "Added sucessfully!";
                 department.tbl_courses.Add(courses);
                 entities.tbl_department.Add(department);
                 entities.SaveChanges();
             }
-
             return Json(department);
         }
 

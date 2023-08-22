@@ -33,8 +33,9 @@ namespace OnlineAdmissionSystem.Models
         public string Student_address { get; set; }
         public string Admission_status { get; set; }
         [Required(ErrorMessage = "This field is required")]
+        [Range(0,12,ErrorMessage = "Required 12 numbers")]
+        public double Adhar_number { get; set; }
 
-        public Nullable<int> Adhar_number { get; set; }
         [Required(ErrorMessage = "This field is required")]
 
         public string Student_religion { get; set; }

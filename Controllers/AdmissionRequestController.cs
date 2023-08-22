@@ -45,18 +45,18 @@ namespace OnlineAdmissionSystem.Controllers
         {
             using (SmartAdmissionSystemDataEntities db=new SmartAdmissionSystemDataEntities())
             {
-                //var course = Convert.ToInt32(Request.Form["Course_ID"].ToString());
-                //data.course_ID = course;
+                var course = Convert.ToInt32(Request.Form["Course_ID"].ToString());
+                data.course_ID = course;
                 data.UserID = Convert.ToInt32(Session["UserID"]);
                 data.admission_status = "Pending";
                 db.tbl_AdmissionTransactions.Add(data);
                 db.SaveChanges();
                 var emailId = db.UserMasters.Where(u => u.UserID == data.UserID).FirstOrDefault();
-                if (emailId != null)
-                {
-                    IEMailHelper eMailHelper=new EMailHelper();
-                    //eMailHelper.SendEmail(emailId.ToString());
-                }
+                //if (emailId != null)
+                //{
+                //    IEMailHelper eMailHelper=new EMailHelper();
+                //    //eMailHelper.SendEmail(emailId.ToString());
+                //}
             }
             return View(data);
         }

@@ -42,11 +42,13 @@ namespace OnlineAdmissionSystem.Controllers
                         if (userDetails.UserType.Equals("Admin"))
                         {
                             Log.Info(userDetails.UserName + " Logged in sucessfully..");
+                            userMaster.LoginErrorMessage = $@"{userDetails.UserName} Log in sucessfull";
                             return RedirectToAction("AdminView", "Admin");
                         }
                         else if (userDetails.UserType.ToLower().Equals("student"))
                         {
                             Log.Info(userDetails.UserName + " Logged in sucessfully..");
+                            userMaster.LoginErrorMessage = $@"{userDetails.UserName} Log in sucessfull";
                             return RedirectToAction("Enquiry", "StudentEnq");
                         }
                         return RedirectToAction("Index", "Home");

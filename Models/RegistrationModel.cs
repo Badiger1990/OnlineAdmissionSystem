@@ -18,9 +18,11 @@ namespace OnlineAdmissionSystem.Models
 
         [Required(ErrorMessage ="Password is required")]
         public string Password { get; set; }
-                
-        //[Required(ErrorMessage = "Confirmed Password is required")]
-        //public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Confirmed Password is required")]
+        [DataType(DataType.Password)]
+        [Compare("Password",ErrorMessage ="Password dosen't match")]
+        public string ConfirmPassword { get; set; }
         public string UserType { get; set; }
 
         [DataType(DataType.EmailAddress)]
@@ -31,9 +33,13 @@ namespace OnlineAdmissionSystem.Models
         public string Gender { get; set; }
         
         [Required(ErrorMessage ="Enter valid number")]
-        [Range(0,9, ErrorMessage ="Enter valid number")]
-        [DataType(DataType.PhoneNumber)]
-        public Nullable<int> Phone_Number { get; set; }
+        //        [Range(0,9, ErrorMessage ="Enter valid number")]
+        //[DataType(DataType.PhoneNumber,ErrorMessage ="Only Phone number accepted")]
+        //[Range(1,10,ErrorMessage ="Ten numbers required")]
+        //[DataType(DataType.PhoneNumber)]
+        //[Phone]
+        [Range(0, 12, ErrorMessage = "Phone number must be between 1-10.")]
+        public string Phone_Number { get; set; }
 
         public string InfoMessage { get; set; }
     }
