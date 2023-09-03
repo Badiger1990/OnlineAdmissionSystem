@@ -33,12 +33,13 @@ namespace OnlineAdmissionSystem.Models
         public string Gender { get; set; }
         
         [Required(ErrorMessage ="Enter valid number")]
-        //        [Range(0,9, ErrorMessage ="Enter valid number")]
+       // [Range(0,9, ErrorMessage ="Enter valid number")]
         //[DataType(DataType.PhoneNumber,ErrorMessage ="Only Phone number accepted")]
         //[Range(1,10,ErrorMessage ="Ten numbers required")]
         //[DataType(DataType.PhoneNumber)]
         //[Phone]
-        [Range(0, 12, ErrorMessage = "Phone number must be between 1-10.")]
+       [StringLength(10,ErrorMessage ="Enter valid phone number",MinimumLength =10)]
+            //0,12, ErrorMessage = "Phone number must be between 0-9.")]
         public string Phone_Number { get; set; }
 
         public string InfoMessage { get; set; }

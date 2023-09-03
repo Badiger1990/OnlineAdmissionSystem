@@ -37,19 +37,42 @@
 #showMBA, #centralDiv {
     border: 1px solid green;
 }
+#showMCom, #centralDiv {
+    border: 1px solid green;
+}
+
 
 #showBCA {
     border: 1px solid blue;
 }
+#showMBA {
+    border: 1px solid blue;
+}
 
+#showBA {
+    border: 1px solid blue;
+}
 #showBBA {
     border: 1px solid orange;
 }
+showBBA {
+    border: 1px solid orange;
+}
+#showMCom {
+    border: 1px solid blue;
+}
+
+
 #showBSc {
     border: 1px solid orange;
 }
+#showBCom{
+    border: 1px solid orange;
+}
+
 
 #showDegreeMarks {
+    border: 1px solid orange;
 }
 
 /* Chrome, Safari, Edge, Opera */

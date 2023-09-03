@@ -12,7 +12,6 @@ namespace OnlineAdmissionSystem.Controllers
         // GET: ApproveAdmission
         public ActionResult ApproveAdmissions()
         {
-            AdmissionTransactionModel admissionTransaction = new AdmissionTransactionModel();
             List<AdmissionTransactionModel> admissionTransactionsList = new List<AdmissionTransactionModel>();
 
             using (SmartAdmissionSystemDataEntities entites=new SmartAdmissionSystemDataEntities())
@@ -23,6 +22,7 @@ namespace OnlineAdmissionSystem.Controllers
 
                 foreach (var item in result)
                 {
+                    AdmissionTransactionModel admissionTransaction = new AdmissionTransactionModel();
                     admissionTransaction.Admission_ID = item.admissions.admission_ID;
                     admissionTransaction.Course_ID = item.course.Course_ID;
                     admissionTransaction.Student_name = item.admissions.student_name;
@@ -44,15 +44,33 @@ namespace OnlineAdmissionSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Approve()
+        public ActionResult Approve(int admissionId)
         {
+            using (SmartAdmissionSystemDataEntities entites = new SmartAdmissionSystemDataEntities())
+            {
+                var rejectStudent = entites.tbl_AdmissionTransactions.Where(d => d.admission_ID == admissionId).FirstOrDefault();
+                if (rejectStudent != null)
+                {
+                    rejectStudent.admission_status = "Approved";
+                    entites.SaveChanges();
+                }
+            }
             return View();
 
         }
 
         [HttpPost]
-        public ActionResult Reject()
+        public ActionResult Reject(int admissionId)
         {
+            using (SmartAdmissionSystemDataEntities entites = new SmartAdmissionSystemDataEntities())
+            {
+                var rejectStudent = entites.tbl_AdmissionTransactions.Where(d => d.admission_ID == admissionId).FirstOrDefault();
+                if (rejectStudent != null)
+                {
+                    rejectStudent.admission_status = "Rejected";
+                    entites.SaveChanges();
+                }
+            }
             return View();
 
         }

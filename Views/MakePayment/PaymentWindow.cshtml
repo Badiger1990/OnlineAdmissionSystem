@@ -138,7 +138,7 @@
     <div id="London" class="tabcontent">
         <h3>UPI Pay</h3>
         <input type="text" name="UPIName" /><br /><br />
-        <input type="button" name="btnDone" value="Done !" />
+        <input type="button" onclick="paymentDone" name="btnDone" value="Done !" />
     </div>
 
     <div id="Paris" class="tabcontent">
@@ -146,7 +146,7 @@
         @*<img width="150" height="150" src="~/assets/images/PayMent.JPG" />*@
         <br /><br />
         <img src="~/assets/images/PayMent.jpeg" />
-        <input type="button" name="btnDone" value="Done !" />
+        <input type="button" onclick="paymentDone" name="btnDone" value="Done !" />
     </div>
 
     <div id="Tokyo" class="tabcontent">
@@ -168,11 +168,14 @@
             document.getElementById(cityName).style.display = "block";
             evt.currentTarget.className += " active";
         }
+        function paymentDone() {
+            alert("Payment successfull, Thank you");
+        }
     </script>
     <footer>
         <div class="container">
             <div class="col-lg-12">
-                <p>Copyright © 2036 Markandeya Univeristy. All rights reserved. &nbsp;&nbsp;&nbsp; </p>
+                <p>Copyright © 2023 Markandeya Univeristy. All rights reserved. &nbsp;&nbsp;&nbsp; </p>
             </div>
         </div>
     </footer>

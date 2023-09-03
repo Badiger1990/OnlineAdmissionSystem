@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UploadFiles</title>
+</head>
+<body>
+    <div> 
+        <h2>Upload files</h2>
+        @using(Html.BeginForm("UploadFiles","UploadFiles",FormMethod.Post,new { enctype = "multipart/form-data" }))
+            {
+                <div>
+                    @Html.TextBox("fileBase","",new {type="file"})
+                    <input type="submit" name="btnUpload" value="Save files"/>
+                    @ViewBag.message
+                </div>
+            }
+    </div>
+</body>
+</html>

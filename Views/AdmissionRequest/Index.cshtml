@@ -31,31 +31,43 @@
     <link href="~/assets/css/SignUpStyles.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.7.0.min.js"></script>
     <script>
-        $(document).ready(function () {
+        @*$(document).ready(function () {
             $("#ddlDepartments").change(function () {
                 var url = "@Url.Content("~/StudentEnq/GetDepartmentByID")";
                 $.getJSON(url, { id: $("#ddlDepartments").val() }, function (data) {
                     alert($("ddlDepartments").val());
                 })
             });
-        });
+        });*@
 
         $(document).ready(function () {
-            $("#ddlCourses").change(function () {
-                var selectedCourse = $("#ddlCourses").val();
-
-                if (selectedCourse == "PG") {
+            $("#ddlCourses_C").change(function () {
+                var selectedCourse = $("#ddlCourses_C").text;
+                //alert(selectedCourse);
+                if (selectedCourse.includes("M")) {
+                    alert(selectedCourse);
                     $("#showDegreeMarks").show();
                 }
                 else {
+                    alert(selectedCourse);
                     $("#showDegreeMarks").hide();
                 }
             });
         });
 
-        $(document).ready(function () {
-            $("#dob_date").datepicker({ dateFormat: 'dd/mm/yy' });
-        });
+        @*$(document).ready(function () {
+            $("#tbnUpload").click(function () {
+               var url = "@Url.Content("~/StudentEnq/GetDepartmentByID")";
+                $.getJSON(url, { id: $("#tbnUpload").val() }, function (data) {
+                    alert($("tbnUpload").val());
+                })
+
+            })
+            })*@
+
+        //$(document).ready(function () {
+        //    $("#dob_date").datepicker({ dateFormat: 'dd/mm/yy' });
+        //});
 
     </script>
 </head>
@@ -118,12 +130,14 @@
         <h3 style="padding-bottom:30px">Admission form</h3>
         @using (Html.BeginForm("SaveAdmissionRequest", "AdmissionRequest", FormMethod.Post))
         {
-    <table>
+        <table>
         <tr>
             <td>Select course</td>
             <td>
-                @Html.DropDownList("Course_ID", (IEnumerable<SelectListItem>)ViewBag.courses, "Select Courses", new { id = "ddlCourses" })
-
+                @*@Html.DropDownList("Course_ID", (IEnumerable<SelectListItem>)ViewBag.courses, "Select Courses", new { id = "ddlCourses",@class="form-control" })*@
+                @Html.DropDownListFor(model=>model.Course_ID, (IEnumerable<SelectListItem>)ViewBag.courses, "Select Courses", new { id = "ddlCourses_C" })
+                @*@Html.DropDownListFor(model => model.Course_ID, ViewBag.courses as SelectList, "Select Courses", new { id = "ddlCourses" })*@
+                @*@Html.DropDownList("Course_ID", (IEnumerable<SelectListItem>)ViewBag.courses, "Select Courses", new { id = "ddlCourses" })*@
             </td>
         </tr>
         <tr id="showDegreeMarks" class="courseDiv">
@@ -172,11 +186,20 @@
         </tr>
         <tr>
             <td>Date of birth</td>
-            <td>@Html.EditorFor(model => model.Student_dob, new { id = "#dob_date" })</td>
+            <td>
+                @Html.EditorFor(model => model.Student_dob, new { id = "#dob_date" })
+
+            </td>
+
         </tr>
         <tr>
             <td>Gender</td>
-            <td>@Html.EditorFor(model => model.Student_gender)</td>
+            <td>
+                Male
+                @Html.RadioButtonFor(model => model.Student_gender, "Male")
+                Female
+                @Html.RadioButtonFor(model => model.Student_gender, "Female")
+            </td>
         </tr>
         <tr>
             <td></td>
@@ -184,6 +207,15 @@
                 @Html.ValidationMessageFor(model => model.Student_gender)
             </td>
         </tr>
+            <tr>
+                <td>Religion</td>
+                <td>@Html.EditorFor(model=>model.Student_religion)</td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>@Html.ValidationMessageFor(model=>model.Student_religion)</td>
+            </tr>
         <tr>
             <td>address</td>
             <td>@Html.EditorFor(model => model.Student_address)</td>
@@ -204,10 +236,15 @@
                 @Html.ValidationMessageFor(model => model.Adhar_number)
             </td>
         </tr>
-        @*<tr>
-            <td>Attach required documents</td>
-            <td>@Html.EditorFor(model => model.Document_path)</td>
-        </tr>*@
+        <tr>
+            @*<td>Attach required documents</td>*@
+            @*<td>@Html.EditorFor(model => model.Document_path)</td>*@
+            <td>
+                <ul>
+                    <li class="scroll-to-section"><a href="@Url.Action("Index","UploadFiles")">Upload documents</a></li>
+                </ul>               
+            </td>
+        </tr>
         <tr>
             <td>
                 <input type="submit" name="btnAdmission" value="Take Admission!" />
@@ -247,7 +284,7 @@
     <footer>
         <div class="container">
             <div class="col-lg-12">
-                <p>Copyright © 2036 Markandeya Univeristy. All rights reserved. &nbsp;&nbsp;&nbsp; </p>
+                <p>Copyright © 2023 Markandeya Univeristy. All rights reserved. &nbsp;&nbsp;&nbsp; </p>
             </div>
         </div>
     </footer>

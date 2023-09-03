@@ -26,7 +26,7 @@ namespace OnlineAdmissionSystem.Models
         public string UserType { get; set; }
         public string Email_ID { get; set; }
         public string Gender { get; set; }
-        public Nullable<int> Phone_Number { get; set; }
+        public string Phone_Number { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_AdmissionTransactions> tbl_AdmissionTransactions { get; set; }

@@ -9,7 +9,7 @@ namespace OnlineAdmissionSystem.Models
     public class AdmissionTransactionModel
     {
         public int Admission_ID { get; set; }
-        public Nullable<int> Course_ID { get; set; }
+        public int Course_ID { get; set; }
         public string Course_Name { get; set; }
         public Nullable<double> Degreee_marks { get; set; }
         [Required(ErrorMessage ="This field is required")]
@@ -33,8 +33,8 @@ namespace OnlineAdmissionSystem.Models
         public string Student_address { get; set; }
         public string Admission_status { get; set; }
         [Required(ErrorMessage = "This field is required")]
-        [Range(0,12,ErrorMessage = "Required 12 numbers")]
-        public double Adhar_number { get; set; }
+        [StringLength(maximumLength:12,ErrorMessage ="Enter valid ADHAR Number",MinimumLength =12)]
+        public string Adhar_number { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
 

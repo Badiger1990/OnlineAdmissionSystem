@@ -16,6 +16,7 @@ namespace OnlineAdmissionSystem.Models
     {
         public int admission_ID { get; set; }
         public Nullable<int> course_ID { get; set; }
+        public string course_name { get; set; }
         public Nullable<double> degreee_marks { get; set; }
         public Nullable<double> puc_marks { get; set; }
         public Nullable<double> sslc_marks { get; set; }
@@ -26,10 +27,10 @@ namespace OnlineAdmissionSystem.Models
         public string student_gender { get; set; }
         public string student_address { get; set; }
         public string admission_status { get; set; }
-        public Nullable<int> adhar_number { get; set; }
+        public string adhar_number { get; set; }
         public string student_religion { get; set; }
         public Nullable<int> UserID { get; set; }
-    
+        public string SaveErrorMessage { get; set; }
         public virtual tbl_courses tbl_courses { get; set; }
         public virtual UserMaster UserMaster { get; set; }
     }

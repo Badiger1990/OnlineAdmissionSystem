@@ -27,7 +27,7 @@ namespace OnlineAdmissionSystem.Controllers
                 userMaster.UserType = "Student";
                 userMaster.UserName = data.UserName;
                 userMaster.Email_ID=data.Email_ID;
-                userMaster.Phone_Number = (int?)data.Phone_Number;
+                userMaster.Phone_Number = data.Phone_Number;
                 userMaster.Password = data.Password;
                 userMaster.Gender = data.Gender;
                 db.UserMasters.Add(userMaster);

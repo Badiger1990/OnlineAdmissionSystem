@@ -202,6 +202,7 @@
     <Compile Include="Controllers\SignInController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Controllers\StudentEnqController.cs" />
+    <Compile Include="Controllers\UploadFilesController.cs" />
     <Compile Include="EmailLogic\EMailHelper.cs" />
     <Compile Include="EmailLogic\IEMailHelper.cs" />
     <Compile Include="Global.asax.cs">
@@ -270,6 +271,8 @@
     <Content Include="Views\AdmissionRequest\Index.cshtml" />
     <Content Include="Views\ApproveAdmission\ApproveAdmissions.cshtml" />
     <Content Include="Views\MakePayment\PaymentWindow.cshtml" />
+    <Content Include="Views\UploadFiles\UploadFiles.cshtml" />
+    <Content Include="Views\UploadFiles\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -279,6 +282,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadedDocuments\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

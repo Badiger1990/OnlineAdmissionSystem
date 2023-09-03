@@ -1,0 +1,84 @@
+<!--<div id="signup-table">
+
+        @*using (Html.BeginForm("SaveDepartment", "Admin", FormMethod.Post))
+            //{
+            <table>
+                <tr> Create Department</tr>
+                <tr>
+                    <td>
+                    <td>-->
+    @*@Html.LabelFor(model => model.Dept_Name)*@
+    <!--</td>
+    <td>-->
+    @*@Html.EditorFor(Model => Model.Dept_Name)*@
+    <!--</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>-->
+    @*@Html.ValidationMessageFor(model => model.Dept_Name)*@
+    <!--</td>
+    </tr>
+    <tr>
+        <td>
+        <td>-->
+    @*@Html.LabelFor(model => model.Dept_Head)*@
+    <!--</td>
+    <td>-->
+    @*@Html.EditorFor(Model => Model.Dept_Head)*@
+    <!--</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>-->
+    @*@Html.ValidationMessageFor(model => model.Dept_Head)*@
+    <!--</td>
+    </tr>
+    <tr>
+        <td>
+        <td>-->
+    @*@Html.LabelFor(model => model.Course_Name)*@
+    <!--</td>
+    <td>-->
+    @*@Html.EditorFor(Model => Model.Course_Name)*@
+    <!--</td>
+    </tr>
+    <tr>
+        <td>
+        <td>-->
+    @*@Html.LabelFor(model => model.Course_Duration)*@
+    <!--</td>
+    <td>-->
+    @*@Html.EditorFor(Model => Model.Course_Duration)*@
+    <!--</td>
+    </tr>
+    <tr>
+        <td>
+        <td>-->
+    @*@Html.LabelFor(model => model.Course_substream)*@
+    <!--</td>
+    <td>-->
+    @*@Html.EditorFor(Model => Model.Course_substream)*@
+    <!--</td>
+    </tr>
+    <tr style="text-align:right">
+        <td>
+        </td>
+        <td>
+            <input type="submit" id="save-btn" value="Save" name="btnSubmit" />
+            <input type="reset" id="clear-btn" value="clear" name="btnClear" />
+        </td>
+
+    </tr>
+    <tr>
+        <td id="status-id" style="display:none">-->
+    @*@Html.LabelFor(model => model.StatusMessage);*@
+    <!--<label>Saved Successfully</label>
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+    <div>
+       
+    </div>-->
